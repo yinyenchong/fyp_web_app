@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.9'
 
 gem 'rails', '6.0.2.1'
 gem 'image_processing',           '1.9.3'
