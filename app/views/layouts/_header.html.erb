@@ -1,0 +1,17 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "SCE Student Online Application", '/static_pages/home', id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= current_user.email %></li>
+          <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+          <li> </li>
+        <% else %>
+          <li><%= link_to 'Log In', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
