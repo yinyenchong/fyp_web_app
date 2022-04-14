@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   #resources
   resources :complaints
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
   
   
   
