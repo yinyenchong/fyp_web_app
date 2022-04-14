@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  
+  #resources
   resources :complaints
   devise_for :users
-
+  
+  
+  
+  #get page links
   get 'static_pages/home'
   get 'static_pages/help'
   

@@ -6,6 +6,10 @@ class ComplaintPolicy < ApplicationPolicy
   def create?
     user.present?
   end
+  
+  def show?
+    user.present?
+  end
  
   def update?
     return true if user.present? 
