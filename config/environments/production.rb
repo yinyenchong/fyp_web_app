@@ -61,6 +61,9 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "fyp_web_app_production"
 
   config.action_mailer.perform_caching = false
+  
+  # this is a line that is added separately so that mailer can work in all environments
+  config.action_mailer.default_url_options = { :host => "https://evening-dusk-08297.herokuapp.com/" }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
