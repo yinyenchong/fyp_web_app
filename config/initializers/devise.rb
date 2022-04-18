@@ -25,6 +25,19 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'https://evening-dusk-08297.herokuapp.com/'
+  
+  config.mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = {
+    :address		=> 'smtp.sendgrid.net',
+    :port			=> '587',
+    :authentication		=> :plain,
+    :user_name		=> ENV['SENDGRID_USERNAME'],
+    :password	        => ENV['SENDGRID_PASSWORD'],
+    :domain			=> 'heroku.com',
+    :enable_starttls_auto	=> true
+  }
+
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
