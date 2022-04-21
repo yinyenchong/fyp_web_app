@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   
   #resources
   resources :complaints
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  resources :users, :only =>[:show]
+  devise_for :users, :path_prefix => 'd', :controllers => { registrations: 'users/registrations' }
   
   
   
@@ -11,6 +12,13 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   
   get 'complaints/new', to: 'complaints#new', as: 'newcomplaint'
+  
+  match '/users',   to: 'users#index',   via: 'get'
+  match '/users/:id',     to: 'users#show',       via: 'get'
+  
+
+  
+  
   
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

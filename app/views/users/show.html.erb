@@ -1,0 +1,14 @@
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= image_tag(current_user.avatar) if current_user.avatar.attached? %>
+        <%= current_user.name %>
+      </h1>
+      </br>
+      
+      
+    </section>
+  </aside>
+</div>

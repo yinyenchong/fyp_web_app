@@ -10,5 +10,16 @@
   <%= @complaint.body %>
 </p>
 
+<p>
+  <strong>Attached File:</strong>
+  <%= image_tag(@complaint.complaintfile) if @complaint.complaintfile.attached? %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @complaint.completed %>
+</p>
+
+
 <%= link_to 'Edit', edit_complaint_path(@complaint) %> |
 <%= link_to 'Back', complaints_path %>

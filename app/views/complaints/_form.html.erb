@@ -20,6 +20,14 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
+  
+  
+  <div class="attachment">
+    <%= f.label :"Attach File" %>
+    <%= f.file_field :complaintfile, accept: 'image/jpeg, image/gif, image/png, image/pdf' %>
+   
+  </div>
+  
  
   <div class="actions">
     <%= f.submit %>
