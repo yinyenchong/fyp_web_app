@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   #resources
   resources :complaints
-  resources :users, :only =>[:show]
+  resources :users, :only =>[:show, :index]
   devise_for :users, :path_prefix => 'd', :controllers => { registrations: 'users/registrations' }
   
   

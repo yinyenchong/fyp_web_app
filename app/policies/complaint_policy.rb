@@ -12,11 +12,11 @@ class ComplaintPolicy < ApplicationPolicy
   end
  
   def update?
-    return true if user.present? 
+    return true if user.present? && user == complaint.user
   end
  
   def destroy?
-    return true if user.present?
+    return true if user.present?  && user == complaint.user
   end
  
   private
