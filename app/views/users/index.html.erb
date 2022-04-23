@@ -1,16 +1,28 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
-<ul class="users">
-  
-  
-  <% @users.each do |user| %>
-  
-    <li>
-      <%= link_to user.name, user %>
-  
-    </li>
-  <% end %>
-  
 
-</ul>
+
+<table class="table table-bordered table-striped table-condensed table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created At</th>
+      <th>Role</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.name, user %></td>
+      <td><%= user.created_at %></td>
+      <td><%= user.roles.pluck(:name) %></td>
+      <!-- Might want to change to edit_user_path(user) -->
+      <td><%= link_to 'Edit Roles', edit_user_path(user.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  
+</table>

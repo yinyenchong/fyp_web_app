@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
   
-  before_action :logged_in_user, only: [:index, :edit, :update]
-  before_action :correct_user, only: [:edit, :update]
+  #before_action :logged_in_user, only: [:index, :edit, :update]
+  #before_action :correct_user, only: [:edit, :update]
+  before_action :authenticate_user!
   
   def index
     @users = User.all
+  end
+  
+  def new
+    @user = User.new
   end
 
   def edit
@@ -19,6 +24,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    #authorize @user
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -42,10 +48,9 @@ class UsersController < ApplicationController
     end
 
 
-
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :avatar)
+                                   :password_confirmation, :avatar,  {role_ids: []} )
     end
 
 

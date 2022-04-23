@@ -20,6 +20,7 @@ gem 'jbuilder',                   '2.10.0'
 gem 'bootsnap',                   '1.7.2', require: false
 gem 'devise'
 gem 'pundit'
+gem 'rolify'
 
 
 group :development, :test do

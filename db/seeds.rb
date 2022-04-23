@@ -6,20 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+[:admin, :student, :lecturer, :program_director, :head_of_school, :executive_dean].each do |role|
+  Role.create!(name: role)
+end
+
+
 # Create a main sample user.
 User.create!(name: "Example User ",
   email: "example@gmail.com",
-  password: "foobar",
-  password_confirmation: "foobar")
+  password: "password",
+  password_confirmation: "password")
+  
   
   
 # Generate a bunch of additional users.
-20.times do |n|
+5.times do |n|
   name = Faker::Name.name
   email = "example-#{n+1}@gmail.com"
   password = "password"
   User.create!(name: name,
   email: email,
   password: password,
-  password_confirmation: password)
+  password_confirmation: password,
+  )
 end
+
+#2.times do |n|
+  
+  #id = n + 1
+  
+  #User.find(id)
+  #User.add_role! :admin
+
+#end
+
+User.first.add_role :admin
+

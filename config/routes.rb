@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   
   #resources
   resources :complaints
-  resources :users, :only =>[:show, :index]
+  resources :roles
   devise_for :users, :path_prefix => 'd', :controllers => { registrations: 'users/registrations' }
-  
+  resources :users
   
   
   #get page links
@@ -13,8 +13,18 @@ Rails.application.routes.draw do
   
   get 'complaints/new', to: 'complaints#new', as: 'newcomplaint'
   
-  match '/users',   to: 'users#index',   via: 'get'
-  match '/users/:id',     to: 'users#show',       via: 'get'
+  
+  # list of all users
+  get 'users',          to: 'users#index',  as: :all_users
+
+  # single user
+  get 'users/:id',      to: 'users#show',    as: :single_user
+  #get 'users/:id/edit', to: 'users#edit',    as: :edit_user
+  
+  
+  
+  #match '/users',   to: 'users#index',   via: 'get'
+  #match '/users/:id',     to: 'users#show',       via: 'get'
   
 
   

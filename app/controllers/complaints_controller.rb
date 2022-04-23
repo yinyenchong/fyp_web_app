@@ -8,7 +8,6 @@ class ComplaintsController < ApplicationController
   # GET /complaints.json
   def index
     @complaints = Complaint.all
-    authorize @complaints
   end
  
   # GET /complaints/1
@@ -19,7 +18,6 @@ class ComplaintsController < ApplicationController
   # GET /complaints/new
   def new
     @complaint = Complaint.new
-    authorize @complaint
   end
  
   # GET /complaints/1/edit
