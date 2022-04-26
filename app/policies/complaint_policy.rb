@@ -13,7 +13,6 @@ class ComplaintPolicy < ApplicationPolicy
       #scope.all
       
     #end
-      
     
     def index?
       true

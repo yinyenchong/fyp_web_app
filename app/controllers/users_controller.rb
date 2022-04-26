@@ -2,10 +2,21 @@ class UsersController < ApplicationController
   
   #before_action :logged_in_user, only: [:index, :edit, :update]
   #before_action :correct_user, only: [:edit, :update]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
+  
+  
+  #after_action :verify_authorized, only: [:index, :show, :edit, :update, :destroy]
   
   def index
     @users = User.all
+    authorize @users
+    
+    #if current_user.has_role? :admin
+      #@users = User.order(created_at: :desc)
+      #@users = User.all
+    #else
+      #redirect_to root_path, alert: 'not authorised'
+    #end
   end
   
   def new
@@ -14,6 +25,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    authorize @user
   end
   
   def show
@@ -24,7 +36,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     @user = User.find(params[:id])
-    #authorize @user
+    authorize @user
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
