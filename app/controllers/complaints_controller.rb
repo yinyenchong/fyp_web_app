@@ -8,6 +8,7 @@ class ComplaintsController < ApplicationController
   # GET /complaints.json
   def index
     @complaints = Complaint.all
+    authorize @complaints
   end
  
   # GET /complaints/1
@@ -29,6 +30,7 @@ class ComplaintsController < ApplicationController
   def create
     @complaint = Complaint.new(complaint_params)
     @complaint.user = current_user
+    
     authorize @complaint
  
     respond_to do |format|

@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 [:admin, :student, :lecturer, :program_director, :head_of_school, :executive_dean].each do |role|
   Role.create!(name: role)
 end
@@ -17,8 +16,6 @@ User.create!(name: "Example User ",
   email: "example@gmail.com",
   password: "password",
   password_confirmation: "password")
-  
-  
   
 # Generate a bunch of additional users.
 5.times do |n|

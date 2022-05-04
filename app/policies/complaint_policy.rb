@@ -14,8 +14,23 @@ class ComplaintPolicy < ApplicationPolicy
       
     #end
     
+    def resolve
+    
+      if user.has_role? :admin
+        scope.all
+      end
+      
+      #if @user.has_role? :admin
+      #if current_user.role == :admin
+        #scope.all
+      #end
+    end
+    
+  end
+  
+  
     def index?
-      true
+      user.has_role? :admin
     end
    
     def create?
@@ -27,11 +42,11 @@ class ComplaintPolicy < ApplicationPolicy
     end
    
     def update?
-      return true if user.present? && user == complaint.user
+      return true if user.has_role? :admin or user == complaint.user
     end
    
     def destroy?
-      return true if user.present?  && user == complaint.user
+      return true if user.has_role? :admin
     end
    
     private
@@ -40,6 +55,5 @@ class ComplaintPolicy < ApplicationPolicy
         record
       end
       
-  end
     
 end

@@ -2,15 +2,11 @@ class UserPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     
-    #def initialize(user)
-      #@user = user
-    #end
-    
     def resolve
       
-      #if user.has_role? :admin
+      if user.has_role? :admin
         scope.all
-      #end
+      end
       
       #if @user.has_role? :admin
       #if current_user.role == :admin
@@ -18,7 +14,9 @@ class UserPolicy < ApplicationPolicy
       #end
     end
   end
-    
+  
+  # methods have to be under the Policy class, not Scope class
+  
   def index?
     #true
     #return true if user.present? && user.role == :admin
