@@ -69,6 +69,6 @@ class ComplaintRepliesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def complaint_reply_params
-      params.require(:complaint_reply).permit(:reply)
+      params.require(:complaint_reply).permit(:reply, :complaint_id)
     end
 end

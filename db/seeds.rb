@@ -39,4 +39,6 @@ end
 #end
 
 User.first.add_role :admin
+User.second.add_role :student
+User.third.add_role :lecturer
 

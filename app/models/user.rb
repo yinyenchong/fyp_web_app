@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :assigned_complaints, class_name: 'Complaint', foreign_key: 'assignee_id', dependent: :nullify
   
   
+  
   has_one_attached :avatar
   
     
@@ -40,6 +41,14 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:student) if self.roles.blank?
   end
+  
+  
+  
+  scope :staff_members, -> { 
+    
+    where('role.name != student')
+    
+  }
 
   
   

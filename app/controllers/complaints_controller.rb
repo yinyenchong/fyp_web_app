@@ -7,8 +7,22 @@ class ComplaintsController < ApplicationController
   # GET /complaints
   # GET /complaints.json
   def index
-    @complaints = Complaint.all
+    
+    #@complaints = Complaint.all
+    
+    #@complaints = Complaint.filter_by_assignee_id(params[current_user])
+    
+    if current_user.has_role? :student 
+      @complaints = Complaint.where(["user_id = ?", current_user])
+    elsif current_user.has_role? :admin
+      @complaints = Complaint.all
+    else  
+      @complaints = Complaint.where(["assignee_id = ?", current_user])
+    end
+  
+    
     authorize @complaints
+    
   end
  
   # GET /complaints/1
