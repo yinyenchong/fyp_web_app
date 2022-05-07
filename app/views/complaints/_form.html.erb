@@ -28,6 +28,14 @@
    
   </div>
   
+  <div>
+    <%= f.label :"Addressed To" %>
+    
+    <!-- User.order(:name) or whatever parameter you want to arrange the users by -->
+    <%= f.collection_select :assignee_id, User.order(:id),:id,:name, include_blank: true %>
+  </div>
+  
+  
  
   <div class="actions">
     <%= f.submit %>

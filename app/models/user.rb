@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   rolify
+  
+  #rolify :before_add => :before_update_delete_roles
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,10 +11,15 @@ class User < ApplicationRecord
   #validates :roles, presence: true
   
   has_many :complaints
+  has_many :complaint_replies, dependent: :destroy
+  has_many :assigned_complaints, class_name: 'Complaint', foreign_key: 'assignee_id', dependent: :nullify
+  
+  
   has_one_attached :avatar
   
     
   #after_create :assign_default_role
+  
 
   validate :must_have_a_role, on: :update
 
@@ -21,6 +29,11 @@ class User < ApplicationRecord
     unless roles.any?
       errors.add(:roles, "Must have at least 1 role")
     end
+  end
+  
+  def before_update_delete_roles(role)
+    # do something before it gets added
+    roles.delete(roles.where(:name => role))
   end
 
 

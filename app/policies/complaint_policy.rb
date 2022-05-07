@@ -30,15 +30,15 @@ class ComplaintPolicy < ApplicationPolicy
   
   
     def index?
-      user.has_role? :admin
+      return true if user.has_role? :admin or user.has_role? :student
     end
    
     def create?
-      user.present?
+      return true if user.has_role? :admin or user.has_role? :student
     end
     
     def show?
-      user.present?
+      return true if user.has_role? :admin or user == complaint.user
     end
    
     def update?

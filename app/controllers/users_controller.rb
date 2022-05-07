@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_id(params[:id])
     authorize @user
+    authorize @user
   end
 
   # PATCH/PUT /users/1

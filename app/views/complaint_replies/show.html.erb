@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reply:</strong>
+  <%= @complaint_reply.reply %>
+</p>
+
+<%= link_to 'Edit', edit_complaint_reply_path(@complaint_reply) %> |
+<%= link_to 'Back', complaint_replies_path %>

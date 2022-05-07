@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_091544) do
+ActiveRecord::Schema.define(version: 2022_05_04_065450) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2022_04_22_091544) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "complaint_replies", force: :cascade do |t|
+    t.text "reply"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "complaint_id"
+    t.integer "user_id"
+    t.index ["complaint_id"], name: "index_complaint_replies_on_complaint_id"
+    t.index ["user_id"], name: "index_complaint_replies_on_user_id"
+  end
+
   create_table "complaints", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -40,6 +50,8 @@ ActiveRecord::Schema.define(version: 2022_04_22_091544) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.boolean "completed", default: false
+    t.integer "assignee_id"
+    t.index ["assignee_id"], name: "index_complaints_on_assignee_id"
     t.index ["user_id"], name: "index_complaints_on_user_id"
   end
 
@@ -76,5 +88,7 @@ ActiveRecord::Schema.define(version: 2022_04_22_091544) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "complaint_replies", "complaints"
+  add_foreign_key "complaint_replies", "users"
   add_foreign_key "complaints", "users"
 end
