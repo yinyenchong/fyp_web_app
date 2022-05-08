@@ -1,4 +1,8 @@
 <%= form_with(model: complaint_reply, local: true) do |form| %>
+
+
+  <%= form.hidden_field :complaint_id %>
+
   <% if complaint_reply.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(complaint_reply.errors.count, "error") %> prohibited this complaint_reply from being saved:</h2>
@@ -10,6 +14,7 @@
       </ul>
     </div>
   <% end %>
+  
 
   <div class="field">
     <%= form.label :reply %>

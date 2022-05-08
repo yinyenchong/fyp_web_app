@@ -1,11 +1,11 @@
 class Complaint < ApplicationRecord
   
  
-  
 
   
   belongs_to :user, optional: false
   belongs_to :assignee, class_name: 'User', optional: false
+  
   
   validates_presence_of :user_id
   validates_presence_of :assignee_id
