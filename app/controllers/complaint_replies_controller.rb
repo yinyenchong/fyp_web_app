@@ -1,5 +1,7 @@
 class ComplaintRepliesController < ApplicationController
   before_action :set_complaint_reply, only: [:show, :edit, :update, :destroy]
+  before_action :set_complaint
+  
 
   # GET /complaint_replies
   # GET /complaint_replies.json
@@ -13,22 +15,32 @@ class ComplaintRepliesController < ApplicationController
   end
 
   # GET /complaint_replies/new
-  def new
-    @complaint_reply = ComplaintReply.new
-  end
+  #def new
+    #@complaint_reply = ComplaintReply.new
+    
+  #end
 
   # GET /complaint_replies/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /complaint_replies
   # POST /complaint_replies.json
   def create
-    @complaint_reply = ComplaintReply.new(complaint_reply_params)
+    #@complaint = Complaint.find(params[:post_id])
+   
+    #@complaint_reply = ComplaintReply.new(complaint_reply_params)
+    
+    @complaint_reply = @complaint.complaint_replies.create(complaint_reply_params)
+    @complaint_reply.user = current_user
+    
+    
 
     respond_to do |format|
       if @complaint_reply.save
-        format.html { redirect_to @complaint_reply, notice: 'Complaint reply was successfully created.' }
+        #format.html { redirect_to @complaint_reply, notice: 'Reply to complaint successful.' }
+          
+        format.html { redirect_to @complaint, notice: 'Reply successful.' }
         format.json { render :show, status: :created, location: @complaint_reply }
       else
         format.html { render :new }
@@ -42,7 +54,7 @@ class ComplaintRepliesController < ApplicationController
   def update
     respond_to do |format|
       if @complaint_reply.update(complaint_reply_params)
-        format.html { redirect_to @complaint_reply, notice: 'Complaint reply was successfully updated.' }
+        format.html { redirect_to @complaint_reply, notice: 'Reply to complaint successfully updated.' }
         format.json { render :show, status: :ok, location: @complaint_reply }
       else
         format.html { render :edit }
@@ -54,9 +66,13 @@ class ComplaintRepliesController < ApplicationController
   # DELETE /complaint_replies/1
   # DELETE /complaint_replies/1.json
   def destroy
+   
+    @complaint_reply = @complaint.complaint_replies.find(params[:id])
+    
     @complaint_reply.destroy
+    
     respond_to do |format|
-      format.html { redirect_to complaint_replies_url, notice: 'Complaint reply was successfully destroyed.' }
+      
       format.json { head :no_content }
     end
   end
@@ -66,9 +82,14 @@ class ComplaintRepliesController < ApplicationController
     def set_complaint_reply
       @complaint_reply = ComplaintReply.find(params[:id])
     end
+    
+    def set_complaint
+      @complaint = Complaint.find(params[:complaint_id])
+    end
 
     # Only allow a list of trusted parameters through.
     def complaint_reply_params
-      params.require(:complaint_reply).permit(:reply, :complaint_id)
+      #params.require(:complaint_reply).permit(:reply, :complaint_id)
+      params.require(:complaint_reply).permit(:reply)
     end
 end

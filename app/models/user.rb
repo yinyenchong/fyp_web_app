@@ -10,7 +10,7 @@ class User < ApplicationRecord
          
   #validates :roles, presence: true
   
-  has_many :complaints
+  has_many :complaints, dependent: :destroy
   has_many :complaint_replies, dependent: :destroy
   has_many :assigned_complaints, class_name: 'Complaint', foreign_key: 'assignee_id', dependent: :nullify
   

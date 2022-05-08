@@ -28,6 +28,7 @@ class ComplaintsController < ApplicationController
   # GET /complaints/1
   # GET /complaints/1.json
   def show
+    @complaint_replies = @complaint.complaint_replies
   end
  
   # GET /complaints/new
