@@ -1,0 +1,11 @@
+<div class="complaint_reply-<%= complaint_reply.id %> container" style="border: 1px solid black; padding: 1em; margin: 1em;">
+    
+  <%= complaint_reply.user.name %><br />
+  
+  <span>Replied at <%= time_ago_in_words(complaint_reply.created_at) %> ago</span>
+  
+  </hr>
+  </br>
+  <%= complaint_reply.reply %>
+  
+</div>

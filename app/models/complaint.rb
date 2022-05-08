@@ -1,7 +1,10 @@
 class Complaint < ApplicationRecord
   
  
+<<<<<<< HEAD
 
+=======
+>>>>>>> complaint-replies
   
   belongs_to :user, optional: false
   belongs_to :assignee, class_name: 'User', optional: false
@@ -9,6 +12,8 @@ class Complaint < ApplicationRecord
   
   validates_presence_of :user_id
   validates_presence_of :assignee_id
+  validates_presence_of :title, presence: true
+  validates_presence_of :body, presnece: true
   
   has_one_attached :complaintfile
   

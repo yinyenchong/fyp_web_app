@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= form_with(model: complaint_reply, local: true) do |form| %>
 
 
@@ -15,7 +16,13 @@
     </div>
   <% end %>
   
+=======
 
+<%= form_with(model: [complaint, complaint.complaint_replies.build]) do |form| %>
+>>>>>>> complaint-replies
+
+  
+  
   <div class="field">
     <%= form.label :reply %>
     <%= form.text_area :reply %>
@@ -24,4 +31,6 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+  
+  
 <% end %>

@@ -31,6 +31,18 @@
   <%= @complaint.completed %>
 </p>
 
+<div class="container">
+  
+  
+  <% @complaint_replies.each do |complaint_reply| %>
+    <%= render 'complaint_replies/complaint_reply', post: @complaint, complaint_reply: complaint_reply %>
+  <% end %>
+  
+  <%= render 'complaint_replies/form', complaint: @complaint %>
+  
+</div>
+
+
 
 <%= link_to 'Edit', edit_complaint_path(@complaint) %> |
 <%= link_to 'Back', complaints_path %>
