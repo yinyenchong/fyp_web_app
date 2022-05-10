@@ -26,9 +26,12 @@
       <td><%= complaint.try(:updated_at) %></td>
       <td><%= complaint.assignee.try(:name) %></td>
       
+      
       <td><%= link_to 'Show', complaint %></td>
       <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
       <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
+     
     </tr>
     <% end %>
   </tbody>

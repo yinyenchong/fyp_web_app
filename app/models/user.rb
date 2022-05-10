@@ -46,9 +46,13 @@ class User < ApplicationRecord
   
   scope :staff_members, -> { 
     
-    where('role.name != student')
+    where.not(id: User.with_role(:student).ids) and where.not(id: User.with_role(:admin).ids)
     
   }
+  
+  def self.without_role(role)
+    where.not(id: User.with_role(role).ids)
+  end
 
   
   

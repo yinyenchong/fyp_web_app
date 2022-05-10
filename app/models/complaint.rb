@@ -1,11 +1,5 @@
 class Complaint < ApplicationRecord
   
- 
-<<<<<<< HEAD
-
-=======
->>>>>>> complaint-replies
-  
   belongs_to :user, optional: false
   belongs_to :assignee, class_name: 'User', optional: false
   
@@ -18,6 +12,11 @@ class Complaint < ApplicationRecord
   has_one_attached :complaintfile
   
   has_many :complaint_replies, dependent: :destroy
+  has_many :assignees
+  
+  #after_create :escalate_to_executive_dean
+  after_save :escalate_to_executive_dean
+  
   
   
   scope :filter_by_assignee_id, ->(current_user) {
@@ -69,6 +68,25 @@ class Complaint < ApplicationRecord
     
   }
 
+  private
+  
+  
+  
+    def escalate_to_executive_dean
+      #if self.updated_at = 
+      
+      start_time = self.updated_at
+      end_time = DateTime.now
+      
+      executive_deans = Role.find_by_name(:executive_dean).users
+      
+       #self.add_role(:student) if self.roles.blank?
+      
+      if TimeDifference.between(start_time, end_time).in_minutes > 1
+        #self.assignee_id = User.with_role :executive_dean
+        self.assignee_id = executive_deans
+      end
+    end
   
   
 

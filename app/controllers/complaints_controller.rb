@@ -46,6 +46,8 @@ class ComplaintsController < ApplicationController
     @complaint = Complaint.new(complaint_params)
     @complaint.user = current_user
     
+    @complaint.escalate_to_executive_dean
+    
     authorize @complaint
  
     respond_to do |format|

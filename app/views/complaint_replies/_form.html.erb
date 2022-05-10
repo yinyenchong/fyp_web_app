@@ -1,27 +1,4 @@
-<<<<<<< HEAD
-<%= form_with(model: complaint_reply, local: true) do |form| %>
-
-
-  <%= form.hidden_field :complaint_id %>
-
-  <% if complaint_reply.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(complaint_reply.errors.count, "error") %> prohibited this complaint_reply from being saved:</h2>
-
-      <ul>
-        <% complaint_reply.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-=======
-
 <%= form_with(model: [complaint, complaint.complaint_replies.build]) do |form| %>
->>>>>>> complaint-replies
-
-  
   
   <div class="field">
     <%= form.label :reply %>
