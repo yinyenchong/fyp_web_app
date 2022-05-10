@@ -15,7 +15,7 @@ class Complaint < ApplicationRecord
   has_many :assignees
   
   #after_create :escalate_to_executive_dean
-  after_save :escalate_to_executive_dean
+  #after_save :escalate_to_executive_dean
   
   
   

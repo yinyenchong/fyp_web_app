@@ -37,14 +37,13 @@
     
     <%= f.collection_select :assignee_id, User.without_role(:admin).without_role(:student).order(:name),:id,:name, include_blank: true %> 
     
-    
-  
    
   </div>
   
-  
  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit Complaint" %>
   </div>
+  
+  
 <% end %>

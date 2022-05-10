@@ -22,7 +22,7 @@ class ComplaintReply < ApplicationRecord
             
             if TimeDifference.between(start_time, end_time).in_minutes > 1
                 #self.assignee_id = User.with_role :executive_dean
-                @complaint.assignee_id = executive_deans
+                complaint.assignee_id = executive_deans
             end
             
         end

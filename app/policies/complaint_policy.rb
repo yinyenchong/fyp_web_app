@@ -33,6 +33,10 @@ class ComplaintPolicy < ApplicationPolicy
       return true
     end
    
+    def new?
+      return true if user.has_role? :admin or user.has_role? :student
+    end
+   
     def create?
       return true if user.has_role? :admin or user.has_role? :student
     end

@@ -53,6 +53,7 @@ class User < ApplicationRecord
   def self.without_role(role)
     where.not(id: User.with_role(role).ids)
   end
+  
 
   
   

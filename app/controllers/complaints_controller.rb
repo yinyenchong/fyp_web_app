@@ -19,7 +19,8 @@ class ComplaintsController < ApplicationController
     else  
       @complaints = Complaint.where(["assignee_id = ?", current_user])
     end
-  
+    
+    
     
     authorize @complaints
     
@@ -31,9 +32,12 @@ class ComplaintsController < ApplicationController
     @complaint_replies = @complaint.complaint_replies
   end
  
+ 
+ 
   # GET /complaints/new
   def new
     @complaint = Complaint.new
+    authorize @complaint
   end
  
   # GET /complaints/1/edit
@@ -46,7 +50,7 @@ class ComplaintsController < ApplicationController
     @complaint = Complaint.new(complaint_params)
     @complaint.user = current_user
     
-    @complaint.escalate_to_executive_dean
+    #@complaint.escalate_to_executive_dean
     
     authorize @complaint
  
@@ -91,9 +95,21 @@ class ComplaintsController < ApplicationController
       @complaint = Complaint.find(params[:id])
       authorize @complaint
     end
+    
+    
+    def update_completed_status
+      @complaint = Complaint.find(params[:id])
+      @complaint.update_attribute(:completed, true)
+      format.html { redirect_to @complaint, notice: 'Complaint closed.' }
+      format.json { render :show, status: :ok, location: @complaint }
+      
+    end
  
     # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
       params.require(:complaint).permit(:title, :body, :user_id, :assignee_id, :complaintfile, :completed)
     end
+    
+    
+    
 end

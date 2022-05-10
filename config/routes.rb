@@ -3,13 +3,22 @@ Rails.application.routes.draw do
   
   #resources
   resources :complaints do
+    #patch :update_completed_status, on: :member
     resources :complaint_replies
+   
   end
+  
+  resources :complaint do
+    patch :update_completed_status, on: :member
+  end
+  
   
   
   resources :roles
   devise_for :users, :path_prefix => 'd', :controllers => { registrations: 'users/registrations' }
   resources :users
+  
+  #link_to "Update Completed Status", update_completed_status_path(complaint), method: :patch
   
   
   #get page links
