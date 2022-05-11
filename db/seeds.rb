@@ -12,16 +12,16 @@ end
 
 
 # Create a main sample user.
-User.create!(name: "Example User ",
+User.create!(name: "Example Admin ",
   email: "example@gmail.com",
-  password: "password",
-  password_confirmation: "password")
+  password: "venividivici",
+  password_confirmation: "venividivici")
   
 # Generate a bunch of additional users.
 5.times do |n|
   name = Faker::Name.name
-  email = "example-#{n+1}@gmail.com"
-  password = "password"
+  email = "example#{n+1}@gmail.com"
+  password = "venividivici"
   User.create!(name: name,
   email: email,
   password: password,
@@ -41,4 +41,7 @@ end
 User.first.add_role :admin
 User.second.add_role :student
 User.third.add_role :lecturer
+User.fourth.add_role :program_director
+User.fifth.add_role :head_of_school
+User.sixth.add_role :executive_dean
 
