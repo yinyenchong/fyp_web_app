@@ -20,7 +20,7 @@ User.create!(name: "Example Admin ",
 # Generate a bunch of additional users.
 5.times do |n|
   name = Faker::Name.name
-  email = "example#{n+1}@gmail.com"
+  email = "example-#{n+1}@gmail.com"
   password = "venividivici"
   User.create!(name: name,
   email: email,
