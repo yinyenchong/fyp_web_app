@@ -40,7 +40,11 @@
   
   <%= render 'complaint_replies/form', complaint: @complaint if @complaint.completed == false %>
   
-  <%= render 'complaints/close_complaint', complaint: @complaint if !current_user.has_role? :student %>
+  <% if @complaint.completed == false %>
+  
+    <%= render 'complaints/close_complaint', complaint: @complaint if !current_user.has_role? :student %>
+  
+  <% end %>
   
 </div>
 
