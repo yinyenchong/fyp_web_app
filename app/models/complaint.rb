@@ -110,6 +110,7 @@ class Complaint < ApplicationRecord
       if TimeDifference.between(start_time, end_time).in_minutes > 1 and self.completed == false
             
         self.assignee_id = executive_deans
+        self.escalated = true
         
       end
       

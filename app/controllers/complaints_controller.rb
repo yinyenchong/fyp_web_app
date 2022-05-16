@@ -49,6 +49,7 @@ class ComplaintsController < ApplicationController
   def create
     @complaint = Complaint.new(complaint_params)
     @complaint.user = current_user
+    #EscalateComplaintJob.perform_later(@complaint)
     
     #@complaint.escalate_to_executive_dean
     
