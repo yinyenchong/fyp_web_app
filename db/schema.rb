@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_08_043059) do
+ActiveRecord::Schema.define(version: 2022_05_16_094427) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2022_05_08_043059) do
     t.integer "user_id"
     t.boolean "completed", default: false
     t.integer "assignee_id"
+    t.boolean "escalated", default: false
+    t.datetime "last_reply_at"
     t.index ["assignee_id"], name: "index_complaints_on_assignee_id"
     t.index ["user_id"], name: "index_complaints_on_user_id"
   end
@@ -74,6 +76,13 @@ ActiveRecord::Schema.define(version: 2022_05_08_043059) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_private"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

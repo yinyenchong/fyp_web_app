@@ -67,6 +67,9 @@ Rails.application.configure do
   
   config.action_mailer.delivery_method = :smtp
   
+  # adapter for Sidekiq
+  config.active_job.queue_adapter = :sidekiq
+  
   config.action_mailer.smtp_settings = {
     :address		=> 'smtp.sendgrid.net',
     :port			=> '587',

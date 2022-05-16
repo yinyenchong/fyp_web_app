@@ -22,6 +22,8 @@ gem 'devise'
 gem 'pundit'
 gem 'rolify'
 gem 'time_difference'
+gem 'redis'
+gem 'sidekiq'
 
 
 group :development, :test do
