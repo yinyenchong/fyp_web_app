@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
   
   resources :complaint do
+    # this method is in complaints controller
     patch :update_completed_status, on: :member
+    #patch :update_escalated_status, on: :member
   end
   
   

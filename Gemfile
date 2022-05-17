@@ -24,6 +24,8 @@ gem 'rolify'
 gem 'time_difference'
 gem 'redis'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'delayed_job'
 
 
 group :development, :test do

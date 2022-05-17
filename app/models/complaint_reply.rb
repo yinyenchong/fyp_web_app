@@ -25,6 +25,7 @@ class ComplaintReply < ApplicationRecord
         
         #end
         
+        # this will update the last_updated column in Complaints table as well (must not have the same function active in comaplaint.rb)
         update_last_reply_at
   
     end

@@ -71,6 +71,10 @@ class ComplaintsController < ApplicationController
   def update
     respond_to do |format|
       if @complaint.update(complaint_params)
+        
+        update_escalated_status
+        
+        
         format.html { redirect_to @complaint, notice: 'Complaint was successfully updated.' }
         format.json { render :show, status: :ok, location: @complaint }
       else
@@ -103,12 +107,36 @@ class ComplaintsController < ApplicationController
       @complaint.update_attribute(:completed, true)
       format.html { redirect_to @complaint, notice: 'Complaint closed.' }
       format.json { render :show, status: :ok, location: @complaint }
-      
     end
+    
+    def update_escalated_status
+      @complaint = Complaint.find(params[:id])
+      #@complaint.update_attribute(:completed, true)
+      
+      start_time = @complaint.created_at
+      end_time = DateTime.now
+      
+      executive_deans = Role.find_by_name(:executive_dean).users
+      
+      if TimeDifference.between(start_time, end_time).in_seconds >= 3 and @complaint.completed == false
+            
+        #@complaint.escalated_to_user_id = executive_deans.ids
+        @complaint.update_attribute(:escalated_to_user_id, executive_deans.ids)
+        @complaint.update_attribute(:escalated, true)
+      
+      end
+      
+      
+      
+      format.html { redirect_to @complaint, notice: 'Complaint auto escalated.' }
+      format.json { render :show, status: :ok, location: @complaint }
+    end
+    
+    
  
     # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
-      params.require(:complaint).permit(:title, :body, :user_id, :assignee_id, :complaintfile, :completed, :escalated, :last_reply_at)
+      params.require(:complaint).permit(:title, :body, :user_id, :assignee_id, :complaintfile, :completed, :escalated, :last_reply_at, :escalated_to_user_id)
     end
     
     
