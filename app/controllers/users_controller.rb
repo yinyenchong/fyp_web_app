@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   #before_action :correct_user, only: [:edit, :update]
   before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
   
-  
   #after_action :verify_authorized, only: [:index, :show, :edit, :update, :destroy]
   
   def index
@@ -45,12 +44,14 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     authorize @user
+    
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
     else
       render 'edit'
     end
+    
   end
 
   # DELETE /users/1
