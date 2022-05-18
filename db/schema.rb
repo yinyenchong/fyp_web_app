@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_063708) do
+ActiveRecord::Schema.define(version: 2022_05_18_064753) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2022_05_18_063708) do
     t.datetime "last_reply_at"
     t.integer "escalated_to_user_id"
     t.boolean "escalated", default: false
+    t.datetime "completed_time"
     t.index ["assignee_id"], name: "index_complaints_on_assignee_id"
     t.index ["escalated_to_user_id"], name: "index_complaints_on_escalated_to_user_id"
     t.index ["user_id"], name: "index_complaints_on_user_id"

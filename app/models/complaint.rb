@@ -1,3 +1,5 @@
+require 'csv'
+
 class Complaint < ApplicationRecord
   
   belongs_to :user, optional: false
@@ -71,7 +73,6 @@ class Complaint < ApplicationRecord
   private
   
   
-  
     def escalate_to_executive_dean
       #if self.updated_at = 
       
@@ -88,7 +89,17 @@ class Complaint < ApplicationRecord
       end
     end
   
-  
+  def self.to_csv
+    attributes = %w{id title user_id assignee_id completed escalated last_reply_at completed_time}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |complaint|
+        csv << attributes.map{ |attr| complaint.send(attr) }
+      end
+    end
+  end
 
   
   

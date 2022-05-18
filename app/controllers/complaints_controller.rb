@@ -16,6 +16,12 @@ class ComplaintsController < ApplicationController
       @complaints = Complaint.where(["user_id = ?", current_user])
     elsif current_user.has_role? :admin
       @complaints = Complaint.all
+      
+      respond_to do |format|
+        format.html
+        format.csv { send_data @complaints.to_csv }
+      end
+      
     else  
       @complaints = Complaint.where(["assignee_id = ?", current_user])
     end
@@ -107,7 +113,9 @@ class ComplaintsController < ApplicationController
  
     # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
-      params.require(:complaint).permit(:title, :body, :user_id, :assignee_id, :complaintfile, :completed)
+      params.require(:complaint).permit(:title, :body, :user_id, :assignee_id, :complaintfile, 
+                                        :completed, :escalated, :escalated_to_user, :last_reply_at,
+                                        :completed_time)
     end
     
     
