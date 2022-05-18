@@ -2,10 +2,9 @@
 <%= form_for(complaint) do |f| %>
 
     <div><%= f.hidden_field :completed, :value => true %></div>
+    <div><%= f.hidden_field :completed_time, :value => DateTime.now %></div>
     
-    
-    
-    <%= f.submit "Close Complaint", method: :patch%>
+    <%= f.submit "Close Complaint", method: :patch %>
     
     
 <% end %>

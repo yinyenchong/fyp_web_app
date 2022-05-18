@@ -106,6 +106,8 @@ class ComplaintsController < ApplicationController
     def update_completed_status
       @complaint = Complaint.find(params[:id])
       @complaint.update_attribute(:completed, true)
+      @complaint.update_attribute(:completed, DateTime.now)
+      
       format.html { redirect_to @complaint, notice: 'Complaint closed.' }
       format.json { render :show, status: :ok, location: @complaint }
       
