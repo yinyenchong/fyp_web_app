@@ -8,6 +8,14 @@ class ComplaintReply < ApplicationRecord
     
     after_touch :escalate_to_executive_dean_by_reply
     
+    after_save_commit do
+        
+        
+        # this will update the last_updated column in Complaints table as well (must not have the same function active in comaplaint.rb)
+        update_last_reply_at
+  
+    end
+    
     private
     
         def escalate_to_executive_dean_by_reply
@@ -21,6 +29,13 @@ class ComplaintReply < ApplicationRecord
                 #self.assignee_id = User.with_role :executive_dean
                 complaint.assignee_id = executive_deans
             end
+            
+        end
+        
+        
+        def update_last_reply_at
+      
+            self.complaint.touch(:last_reply_at) if self.complaint
             
         end
     
