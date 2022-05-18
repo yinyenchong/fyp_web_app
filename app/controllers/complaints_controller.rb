@@ -19,8 +19,9 @@ class ComplaintsController < ApplicationController
       
       respond_to do |format|
         format.html
-        format.csv { send_data @complaints.to_csv }
+        format.csv { send_data @complaints.to_csv, filename: "complaints-#{Date.today}.csv" }
       end
+      
       
     else  
       @complaints = Complaint.where(["assignee_id = ?", current_user])
@@ -119,6 +120,28 @@ class ComplaintsController < ApplicationController
                                         :completed, :escalated, :escalated_to_user, :last_reply_at,
                                         :completed_time)
     end
+    
+    
+    def export_to_csv
+      
+      @complaints = Complaint.all
+      
+      csv_string = CSV.generate do |csv|
+      
+          csv << ["Submitter ID", "Submitter Name", "Title", "Assignee ID", "Assignee Name", "Completed Status", "Escalated Status", "Last Reply At", "Completed Time"]
+          
+          @complaints.each do |complaint|
+              csv << [user_id.name, title, assignee_id, assignee.name, completed, escalated, last_reply_at, completed_time]
+          end
+   
+      end     
+      
+      send_data csv_string,
+     :type => 'text/csv; header=present',
+     :disposition => "attachment; filename=complaints.csv" 
+      
+    end
+    
     
     
     
