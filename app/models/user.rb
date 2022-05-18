@@ -1,3 +1,5 @@
+require 'csv'
+
 class User < ApplicationRecord
   rolify
   
@@ -52,6 +54,18 @@ class User < ApplicationRecord
   
   def self.without_role(role)
     where.not(id: User.with_role(role).ids)
+  end
+  
+  def self.to_csv
+    attributes = %w{id name email}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
   end
   
 

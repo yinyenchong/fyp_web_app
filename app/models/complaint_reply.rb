@@ -8,9 +8,6 @@ class ComplaintReply < ApplicationRecord
     
     after_touch :escalate_to_executive_dean_by_reply
     
-    
-    
-    
     private
     
         def escalate_to_executive_dean_by_reply
