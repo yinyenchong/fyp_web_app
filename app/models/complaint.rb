@@ -53,7 +53,7 @@ class Complaint < ApplicationRecord
     Complaint
       .select('*')
       .joins(:users)
-      .where('reviews.created_at > ?', 1.week.ago)
+      .where('complaints.created_at > ?', 1.day.ago)
   }
   
   
