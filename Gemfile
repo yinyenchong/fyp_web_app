@@ -26,6 +26,7 @@ gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'delayed_job'
+gem 'delayed_job_recurring'
 
 
 group :development, :test do

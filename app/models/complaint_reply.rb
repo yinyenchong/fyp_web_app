@@ -11,19 +11,6 @@ class ComplaintReply < ApplicationRecord
     
     after_save_commit do
         
-        #start_time = complaint.complaint_replies.last.created_at
-        #end_time = DateTime.now
-        
-        #executive_deans = Role.find_by_name(:executive_dean).users
-        
-        #if TimeDifference.between(start_time, end_time).in_minutes > 1
-            
-            
-            #self.add_role(:student) if self.roles.blank?
-            
-            #complaint.assignee_id = executive_deans
-        
-        #end
         
         # this will update the last_updated column in Complaints table as well (must not have the same function active in comaplaint.rb)
         update_last_reply_at

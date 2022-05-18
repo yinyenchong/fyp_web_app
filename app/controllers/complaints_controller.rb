@@ -20,8 +20,6 @@ class ComplaintsController < ApplicationController
       @complaints = Complaint.where(["assignee_id = ?", current_user])
     end
     
-    
-    
     authorize @complaints
     
   end
@@ -70,9 +68,10 @@ class ComplaintsController < ApplicationController
   # PATCH/PUT /complaints/1.json
   def update
     respond_to do |format|
-      if @complaint.update(complaint_params)
+      #if @complaint.update(complaint_params)
+      if @complaint.save  
         
-        update_escalated_status
+        #complaint.escalate_to_executive_dean_3
         
         
         format.html { redirect_to @complaint, notice: 'Complaint was successfully updated.' }
@@ -125,7 +124,6 @@ class ComplaintsController < ApplicationController
         @complaint.update_attribute(:escalated, true)
       
       end
-      
       
       
       format.html { redirect_to @complaint, notice: 'Complaint auto escalated.' }

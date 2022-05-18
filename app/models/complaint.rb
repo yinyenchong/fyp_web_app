@@ -14,14 +14,16 @@ class Complaint < ApplicationRecord
   
   has_many :complaint_replies, dependent: :destroy
   has_many :assignees
+  has_many :escalated_to_users
   
-  #after_create :escalate_to_executive_dean
-  #after_save :escalate_to_executive_dean
 
   #after_create :update_last_reply_at_during_complaint_creation
-  after_save_commit do
-    escalate_to_executive_dean_2
+  #before_save :escalate_to_executive_dean_3
+  included do
+    after_commit :escalate_to_executive_dean_2
+    
   end
+  
   
   scope :filter_by_assignee_id, ->(current_user) {
     
@@ -55,12 +57,6 @@ class Complaint < ApplicationRecord
   scope :in_progress, -> { 
     where(completed: false) 
     
-  }
-  
-  
-  scope :to_escalate, -> { 
-    where('self.complaint_replies.last > ?', Time.new.utc)
-  
   }
   
   
@@ -114,6 +110,24 @@ class Complaint < ApplicationRecord
           
       self.escalated_to_user_id = executive_deans.ids
       self.escalated = true
+      
+    end
+    
+  end
+  
+  def escalate_to_executive_dean_3
+    
+    start_time = self.created_at
+    end_time = DateTime.now
+    
+    executive_deans = Role.find_by_name(:executive_dean).users
+    
+    if TimeDifference.between(start_time, end_time).in_seconds >= 3 and self.completed == false
+          
+      
+      #self.update_attribute(:escalated_to_user_id, executive_deans)
+      #self.update_attribute(:escalated, true)
+      
       
     end
     
