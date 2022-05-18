@@ -104,28 +104,9 @@ class Complaint < ApplicationRecord
                 complaint.created_at, complaint.last_reply_at, complaint.completed, complaint.escalated, complaint.completed_time]
         
       end
-      
-      
-
         
      
     end
-    
-    
-    #@complaints = Complaint.find(:all)
-    
-    #csv_string = CSV.generate do |csv|
-    #CSV.generate do |csv|
-      
-         #csv << ["Complaint ID", "Submitter ID", "Submitter Name", "Title", "Assignee ID", "Assignee Name", "Completed Status", "Escalated Status", "Last Reply At", "Completed Time"]
-        
-         #all.each do |complaint|
-           #csv << [self.id, self.user_id.name, self.title, self.assignee_id, self.assignee.name, self.completed, self.escalated, self.last_reply_at, self.completed_time]
-         #end
-    #end 
-    
-   
-    
     
   end
   
