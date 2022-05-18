@@ -10,7 +10,6 @@
   <%= @complaint.assignee.name %>
 </p>
 
-
 <p>
   <strong>Title:</strong>
   <%= @complaint.title %>
@@ -31,6 +30,13 @@
   <%= @complaint.completed %>
 </p>
 
+<p>
+  <strong>Completed Time:</strong>
+  <%= @complaint.completed_time %>
+</p>
+
+
+
 <div class="container">
   
   <% @complaint_replies.each do |complaint_reply| %>
@@ -47,12 +53,6 @@
   <% end %>
   
 </div>
-
-
- 
-
-
-
 
 
 <%= link_to 'Edit', edit_complaint_path(@complaint) %> |
