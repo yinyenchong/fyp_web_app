@@ -17,7 +17,6 @@ class User < ApplicationRecord
   has_many :assigned_complaints, class_name: 'Complaint', foreign_key: 'assignee_id', dependent: :nullify
   
   
-  
   has_one_attached :avatar
   
     
@@ -68,7 +67,11 @@ class User < ApplicationRecord
     end
   end
   
-
+  def calculate_stats_for_users
+  
+  
+  
+  end
   
   
 end

@@ -28,26 +28,11 @@ class Complaint < ApplicationRecord
     where('assignee_id = ?', current_user)
     
     #where(:assignee_id => user_id)
-    
-    
-    #where(
-      
-      #"id IN ( SELECT complaint_id 
-      #"id IN ( SELECT id 
-               #FROM complaints
-               #WHERE user_id = ?
-             #)", 
-             
-      #assignee_id
-    #)
-    
   
   }
   
   scope :filter_by_assignee_id_2, ->(user) { 
-    
     where(id: Complaint.select(:complaint_id).where(user_id: user.id)) 
-    
   }
   
   
@@ -62,20 +47,16 @@ class Complaint < ApplicationRecord
   
   scope :in_progress, -> { 
     where(completed: false) 
-    
   }
   
   scope :filter_by_staff, -> {
-    
     where('!current_user.has_role? :student')
-    
   }
 
   private
   
   
     def escalate_to_executive_dean
-      #if self.updated_at = 
       
       start_time = self.updated_at
       end_time = DateTime.now
@@ -94,6 +75,8 @@ class Complaint < ApplicationRecord
     attributes = %w{id title user_id assignee_id created_at last_reply_at completed escalated completed_time}
 
     CSV.generate(headers: true) do |csv|
+      
+      #do headers
       csv << attributes
 
       all.each do |complaint|  
@@ -104,9 +87,33 @@ class Complaint < ApplicationRecord
                 complaint.created_at, complaint.last_reply_at, complaint.completed, complaint.escalated, complaint.completed_time]
         
       end
-        
+    end
+  end
+  
+  def export_complaint_stats
+    
+  end
+  
+  def calculate_stats_for_complaints
+    
+    total_complaints = Complaint.count
+    total_closed_complaints = Complaint.where('completed = ?', true).count
+    total_escalated_complaints = Complaint.where('escalated = ?', true).count
+    
+    
+    start_time = self.created_at
+    end_time = self.completed_time
+    avg_time_to_complete_complaint = TimeDifference.between(start_time, end_time).in_hours
+      
+    
+    all.each do |complaint|
      
     end
+    
+    
+    
+    
+    
     
   end
   
