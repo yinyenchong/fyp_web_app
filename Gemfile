@@ -22,7 +22,8 @@ gem 'devise'
 gem 'pundit'
 gem 'rolify'
 gem 'time_difference'
-
+gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'

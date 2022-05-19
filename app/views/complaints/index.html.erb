@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <table class="table table-bordered table-striped table-condensed table-hover">
   <thead>
     <tr>
@@ -14,12 +12,6 @@
   <tbody>
     <% @complaints.each do |complaint| %>
     <tr>
-      <!--
-      <td><%= complaint.title %></td>
-      <td><%= complaint.created_at %></td>
-      <td><%= complaint.updated_at %></td>
-      <td><%= complaint.assignee.name %></td>
-      -->
       
       <td><%= complaint.try(:title) %></td>
       <td><%= complaint.try(:created_at) %></td>

@@ -14,16 +14,28 @@
     
       <h1>Welcome to SCE Student Online Application System, <%= current_user.name %></h1>
       
+      <div>
+        <%= link_to 'All Users', users_path, :class => "btn" %> |
+        <%= link_to 'All Complaints', complaints_path, :class => "btn" %>
+      </div>
+      
+      
+      <% if current_user.has_role? :admin %>
+        
+        <%= link_to 'Complaint Statistics', static_pages_complaints_charts_path, :class => "btn" %>
+      
+      <% end %>
+      
     <% else %>
     
       <h1>Welcome to SCE Student Online Application System.</h1>
     
     <% end %>
     
-      <h2>
-        This is the placeholder UI for the home page
-        
-      </h2>
+    <h2>
+      This is the placeholder UI for the home page
+      
+    </h2>
     
     
   </div>

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   
   #get page links
   get 'static_pages/home'
-  get 'static_pages/help'
+  get 'static_pages/complaints_charts'
   
   get 'complaints/new', to: 'complaints#new', as: 'newcomplaint'
   
@@ -38,12 +38,8 @@ Rails.application.routes.draw do
   #get 'users/:id/edit', to: 'users#edit',    as: :edit_user
   
   
-  
   #match '/users',   to: 'users#index',   via: 'get'
   #match '/users/:id',     to: 'users#show',       via: 'get'
-  
-
-  
   
   
   

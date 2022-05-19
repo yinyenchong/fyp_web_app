@@ -1,0 +1,13 @@
+<h1>Number of Created Complants</h1>
+<%= line_chart Complaint.group_by_day(:created_at, range: 1.week.ago..Time.now, expand_range: true).count %>
+
+<h1>Number of Complaints With Replies</h1>
+<%= line_chart Complaint.group_by_day(:last_reply_at, range: 1.week.ago..Time.now, expand_range: true).count %>
+
+<h1>Number of Complaints Completed</h1>
+<%= line_chart Complaint.group_by_day(:completed_time, range: 1.week.ago..Time.now, expand_range: true).where('completed = ?', true).count %>
+
+<h1>Number of Complaints Escalated</h1>
+<%= line_chart Complaint.group_by_day(:escalated, range: 1.week.ago..Time.now, expand_range: false).count %>
+
+
