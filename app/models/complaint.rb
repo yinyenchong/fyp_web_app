@@ -65,14 +65,14 @@ class Complaint < ApplicationRecord
       end_time = DateTime.now
       
       executive_deans = Role.find_by_name(:executive_dean).users
-      
+  
        #self.add_role(:student) if self.roles.blank?
       
       if TimeDifference.between(start_time, end_time).in_minutes > 1
         #self.assignee_id = User.with_role :executive_dean
         #self.assignee_id = executive_deans.ids
         
-        self.assignee_id = executive_deans.ids
+        self.escalated_to_user_id = executive_deans.ids
         self.escalated = true
         
       end
@@ -119,6 +119,12 @@ class Complaint < ApplicationRecord
       end
       
     end
+    
+  def update_last_reply_at_during_complaint_creation
+    
+    self.touch(:last_reply_at) 
+          
+  end
     
   
 
