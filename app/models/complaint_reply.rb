@@ -23,7 +23,7 @@ class ComplaintReply < ApplicationRecord
             start_time = ComplaintReply.last.updated_at
             end_time = DateTime.now
             
-            executive_deans =  where(id: User.with_role(:executive_dean).ids)
+            executive_deans = Role.find_by_name(:executive_dean).users
             
             if TimeDifference.between(start_time, end_time).in_minutes > 1
                 #self.assignee_id = User.with_role :executive_dean

@@ -20,6 +20,10 @@ class Complaint < ApplicationRecord
   #after_create :escalate_to_executive_dean
   #after_save :escalate_to_executive_dean
   
+  after_save_commit do
+    escalate_to_executive_dean
+  end
+    
   
   
   scope :filter_by_assignee_id, ->(current_user) {
@@ -67,56 +71,56 @@ class Complaint < ApplicationRecord
       
       if TimeDifference.between(start_time, end_time).in_minutes > 1
         #self.assignee_id = User.with_role :executive_dean
-        self.assignee_id = executive_deans
-      end
-    end
-  
-  def self.to_csv
-    attributes = %w{id title user_id assignee_id created_at last_reply_at completed escalated completed_time}
-
-    CSV.generate(headers: true) do |csv|
-      
-      #do headers
-      csv << attributes
-
-      all.each do |complaint|  
-        # original method to grab all attributes regardless of formatting
-        #csv << attributes.map{ |attr| complaint.send(attr) }
+        #self.assignee_id = executive_deans
         
-        csv << [complaint.id, complaint.title, complaint.user.name, complaint.assignee.name, 
-                complaint.created_at, complaint.last_reply_at, complaint.completed, complaint.escalated, complaint.completed_time]
+        self.update_attribute(:escalated_to_user, executive_deans)
+        self.update_attribute(:escalated, true)
         
       end
     end
-  end
+    
   
-  def export_complaint_stats
-    
-  end
+    def self.to_csv
+      attributes = %w{id title user_id assignee_id created_at last_reply_at completed escalated completed_time}
   
-  def calculate_stats_for_complaints
-    
-    total_complaints = Complaint.count
-    total_closed_complaints = Complaint.where('completed = ?', true).count
-    total_escalated_complaints = Complaint.where('escalated = ?', true).count
-    
-    
-    start_time = self.created_at
-    end_time = self.completed_time
-    avg_time_to_complete_complaint = TimeDifference.between(start_time, end_time).in_hours
-      
-    
-    all.each do |complaint|
-     
+      CSV.generate(headers: true) do |csv|
+        
+        #do headers
+        csv << attributes
+  
+        all.each do |complaint|  
+          # original method to grab all attributes regardless of formatting
+          #csv << attributes.map{ |attr| complaint.send(attr) }
+          
+          csv << [complaint.id, complaint.title, complaint.user.name, complaint.assignee.name, 
+                  complaint.created_at, complaint.last_reply_at, complaint.completed, complaint.escalated, complaint.completed_time]
+          
+        end
+      end
     end
     
+    def export_complaint_stats
+      
+    end
     
+    def calculate_stats_for_complaints
+      
+      total_complaints = Complaint.count
+      total_closed_complaints = Complaint.where('completed = ?', true).count
+      total_escalated_complaints = Complaint.where('escalated = ?', true).count
+      
+      
+      start_time = self.created_at
+      end_time = self.completed_time
+      avg_time_to_complete_complaint = TimeDifference.between(start_time, end_time).in_hours
+        
+      
+      all.each do |complaint|
+       
+      end
+      
+    end
     
-    
-    
-    
-  end
-  
   
 
   
