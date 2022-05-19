@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :complaints, dependent: :destroy
   has_many :complaint_replies, dependent: :destroy
   has_many :assigned_complaints, class_name: 'Complaint', foreign_key: 'assignee_id', dependent: :nullify
+  has_many :escalated_complaints, class_name: 'Complaint', foreign_key: 'escalated_to_user_id'
   
   
   has_one_attached :avatar

@@ -4,6 +4,7 @@ class Complaint < ApplicationRecord
   
   belongs_to :user, optional: false
   belongs_to :assignee, class_name: 'User', optional: false
+  belongs_to :escalated_to_user, class_name: 'User', optional: true
   
   
   validates_presence_of :user_id
@@ -23,8 +24,6 @@ class Complaint < ApplicationRecord
   after_save_commit do
     escalate_to_executive_dean
   end
-    
-  
   
   scope :filter_by_assignee_id, ->(current_user) {
     
@@ -71,10 +70,10 @@ class Complaint < ApplicationRecord
       
       if TimeDifference.between(start_time, end_time).in_minutes > 1
         #self.assignee_id = User.with_role :executive_dean
-        #self.assignee_id = executive_deans
+        #self.assignee_id = executive_deans.ids
         
-        self.update_attribute(:escalated_to_user, executive_deans)
-        self.update_attribute(:escalated, true)
+        self.assignee_id = executive_deans.ids
+        self.escalated = true
         
       end
     end
