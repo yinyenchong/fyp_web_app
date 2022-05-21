@@ -21,12 +21,14 @@ class Complaint < ApplicationRecord
   #after_create :escalate_to_executive_dean
   #after_save :escalate_to_executive_dean
   
-  after_save_commit do
-    escalate_to_executive_dean
-  end
+  #after_save_commit do
+    #escalate_to_executive_dean
+  #end
+  
+  before_commit :escalate_to_executive_dean_2
+  
   
   scope :filter_by_assignee_id, ->(current_user) {
-    
     
     where('assignee_id = ?', current_user)
     
@@ -40,7 +42,6 @@ class Complaint < ApplicationRecord
   
   
   scope :filter_by_assignee_id_3, -> { 
-    
     Complaint
       .select('*')
       .joins(:users)
@@ -61,7 +62,7 @@ class Complaint < ApplicationRecord
   
     def escalate_to_executive_dean
       
-      start_time = self.updated_at
+      start_time = self.created_at
       end_time = DateTime.now
       
       executive_deans = Role.find_by_name(:executive_dean).users
@@ -74,6 +75,45 @@ class Complaint < ApplicationRecord
         
         self.escalated_to_user_id = executive_deans.ids
         self.escalated = true
+        self.escalated_time = DateTime.now()
+        
+      end
+    end
+    
+    
+    def escalate_to_executive_dean_2
+      
+      start_time = self.created_at
+      end_time = DateTime.now
+      
+      #executive_deans = Role.find_by_name(:executive_dean).users
+      
+      # syntax works and complaint gets escalated
+      #test_user = User.find(3)
+      
+      # callback infinite loop if you use test_user_2 
+      #test_user_2 = executive_deans.limit(1).pluck(:id)
+      
+      #test_user_3 = User.where(role: :executive_dean)
+      
+      
+      #test_user_4 = User.joins(:roles).where(roles: {name: 'executive_dean'})
+      
+  
+      executive_dean_to_escalate = User.joins(:roles).find_by(roles: {name: 'executive_dean'})
+
+      if TimeDifference.between(start_time, end_time).in_seconds > 10 and self.completed == false
+        
+        #self.update_attribute(:escalated_to_user_id, executive_deans.ids)
+        #self.update_attribute(:escalated_to_user_id, test_user.id)
+        
+        # update_attribute calls "save", so do not use after_save+_commit because you'll be stuck in callback loop
+        # no don't use this
+        #self.update_attribute(:escalated_to_user_id, test_user_2.id)
+        
+        self.update_attribute(:escalated_to_user_id, executive_dean_to_escalate.id)
+        self.update_attribute(:escalated, true)
+        self.update_attribute(:escalated_time, DateTime.now())
         
       end
     end
@@ -125,8 +165,6 @@ class Complaint < ApplicationRecord
     self.touch(:last_reply_at) 
           
   end
-    
-  
 
   
   

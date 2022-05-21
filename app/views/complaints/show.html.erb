@@ -35,6 +35,23 @@
   <%= @complaint.completed_time %>
 </p>
 
+<p>
+  <strong>Escalated:</strong>
+  <%= @complaint.escalated %>
+</p>
+
+<p>
+  <strong>Escalated Time:</strong>
+  <%= @complaint.escalated_time %>
+</p>
+
+<p>
+  <strong>Escalated To:</strong>
+  <%= @complaint.escalated_to_user.name if @complaint.escalated_to_user.present? %>
+</p>
+
+
+
 
 <div class="container">
   
