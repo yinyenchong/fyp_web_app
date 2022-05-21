@@ -18,14 +18,11 @@ class Complaint < ApplicationRecord
   has_many :assignees
   has_many :escalated_to_users
   
-  #after_create :escalate_to_executive_dean
-  #after_save :escalate_to_executive_dean
+
+  # this works when not being run as a job
+  before_commit :escalate_to_executive_dean!
   
-  #after_save_commit do
-    #escalate_to_executive_dean
-  #end
   
-  before_commit :escalate_to_executive_dean_2
   
   
   scope :filter_by_assignee_id, ->(current_user) {
@@ -58,30 +55,10 @@ class Complaint < ApplicationRecord
   }
 
   private
-  
-  
-    def escalate_to_executive_dean
-      
-      start_time = self.created_at
-      end_time = DateTime.now
-      
-      executive_deans = Role.find_by_name(:executive_dean).users
-  
-       #self.add_role(:student) if self.roles.blank?
-      
-      if TimeDifference.between(start_time, end_time).in_minutes > 1
-        #self.assignee_id = User.with_role :executive_dean
-        #self.assignee_id = executive_deans.ids
-        
-        self.escalated_to_user_id = executive_deans.ids
-        self.escalated = true
-        self.escalated_time = DateTime.now()
-        
-      end
-    end
+
     
     
-    def escalate_to_executive_dean_2
+    def escalate_to_executive_dean!
       
       start_time = self.created_at
       end_time = DateTime.now
@@ -114,6 +91,10 @@ class Complaint < ApplicationRecord
         self.update_attribute(:escalated_to_user_id, executive_dean_to_escalate.id)
         self.update_attribute(:escalated, true)
         self.update_attribute(:escalated_time, DateTime.now())
+        
+        #self.escalated_to_user_id = executive_dean_to_escalate.id
+        #self.escalated = true
+        #self.escalated_time = DateTime.now()
         
       end
     end

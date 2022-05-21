@@ -1,4 +1,4 @@
-<h1>Number of Created Complants</h1>
+<h1>Number of Created Complaints</h1>
 <%= line_chart Complaint.group_by_day(:created_at, range: 1.week.ago..Time.now, expand_range: true).count %>
 
 <h1>Number of Complaints With Replies</h1>

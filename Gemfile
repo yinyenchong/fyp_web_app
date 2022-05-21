@@ -24,6 +24,10 @@ gem 'rolify'
 gem 'time_difference'
 gem 'chartkick'
 gem 'groupdate'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'redis'
+
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'

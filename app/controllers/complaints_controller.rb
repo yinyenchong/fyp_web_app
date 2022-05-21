@@ -77,6 +77,11 @@ class ComplaintsController < ApplicationController
   def update
     respond_to do |format|
       if @complaint.update(complaint_params)
+        
+        #EscalateJob.set(wait: 1.minutes).perform_later(@complaint)
+        
+        EscalateJob.perform_now(@complaint)
+        
         format.html { redirect_to @complaint, notice: 'Complaint was successfully updated.' }
         format.json { render :show, status: :ok, location: @complaint }
       else
