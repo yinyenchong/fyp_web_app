@@ -37,6 +37,7 @@ class ComplaintsController < ApplicationController
   # GET /complaints/1.json
   def show
     @complaint_replies = @complaint.complaint_replies
+    EscalateJob.perform_now(@complaint)
   end
  
  
@@ -58,6 +59,8 @@ class ComplaintsController < ApplicationController
     @complaint.user = current_user
     
     #@complaint.escalate_to_executive_dean
+    
+    EscalateJob.perform_now(@complaint)
     
     authorize @complaint
  
