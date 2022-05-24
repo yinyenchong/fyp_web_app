@@ -27,13 +27,9 @@ Rails.application.routes.draw do
   #devise_for :users, :path_prefix => 'd', :controllers => { registrations: 'users/registrations' }
   devise_for :users, :path_prefix => 'd'
   
-  devise_scope :user do
-    get 'users', to: 'devise/sessions#new'
-  end
-  
   resources :users do
     member do
-      get "show_chat"
+      get "show_profile"
     end
   end
   

@@ -17,10 +17,29 @@ class UsersController < ApplicationController
     end
     
     authorize @users
+    
+    
+    
   
   end
   
-  def show_chat
+  def show_profile
+    @user = User.find_by_id(params[:id])
+    authorize @user
+  end
+  
+  def new
+    @user = User.new
+  end
+
+  def edit
+    @user = User.find(params[:id])
+    authorize @user
+  end
+  
+  def show
+   
+    
     @user = User.find(params[:id])
     @users = User.all_except(current_user)
 
@@ -34,21 +53,6 @@ class UsersController < ApplicationController
     
     render 'rooms/index'
     
-    authorize @user
-    
-  end
-  
-  def new
-    @user = User.new
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    authorize @user
-  end
-  
-  def show
-    @user = User.find_by_id(params[:id])
     authorize @user
   end
 

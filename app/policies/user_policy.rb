@@ -28,11 +28,11 @@ class UserPolicy < ApplicationPolicy
   end
   
   def show?
-    return true if user.has_role? :admin or user.id == record.id
+    return true 
   end
   
-  def show_chat?
-    return true
+  def show_profile?
+    return true if user.has_role? :admin or user.id == record.id
   end
   
   def edit?

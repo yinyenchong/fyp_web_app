@@ -11,6 +11,9 @@ class RoomsController < ApplicationController
     @users = User.all_except(current_user)
     
     #render 'index'
+    
+    authorize @rooms
+    
   end
   
   def show
@@ -25,11 +28,16 @@ class RoomsController < ApplicationController
     @users = User.all_except(current_user)
     
     render 'index'
+    
+    authorize @room
+    
   end
   
   def create
   
     @room = Room.create(name: params["room"]["name"])
+    
+    authorize @room
   
   end
   
