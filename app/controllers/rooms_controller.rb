@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
     
     @users = User.all_except(current_user)
     
-    render 'index'
+    #render 'index'
   end
   
   def show

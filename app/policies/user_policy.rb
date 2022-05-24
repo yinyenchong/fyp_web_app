@@ -31,6 +31,10 @@ class UserPolicy < ApplicationPolicy
     return true if user.has_role? :admin or user.id == record.id
   end
   
+  def show_chat?
+    return true
+  end
+  
   def edit?
     #true
     update?

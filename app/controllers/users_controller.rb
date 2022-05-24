@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   #after_action :verify_authorized, only: [:index, :show, :edit, :update, :destroy]
   
   def index
-    @users = User.all
     
+    @users = User.all
+    #@user = User.find(params[:id])
     
     respond_to do |format|
       format.html
@@ -16,13 +17,25 @@ class UsersController < ApplicationController
     end
     
     authorize @users
+  
+  end
+  
+  def show_chat
+    @user = User.find(params[:id])
+    @users = User.all_except(current_user)
+
+    @rooms = Room.public_rooms
+    @room = Room.new
+    @room_name = get_name(@user, current_user)
+    @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, @current_user], @room_name)
     
-    #if current_user.has_role? :admin
-      #@users = User.order(created_at: :desc)
-      #@users = User.all
-    #else
-      #redirect_to root_path, alert: 'not authorised'
-    #end
+    @message = Message.new
+    @messages = @single_room.messages.order(created_at: :asc)
+    
+    render 'rooms/index'
+    
+    authorize @user
+    
   end
   
   def new
@@ -72,6 +85,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation, :avatar,  {role_ids: []} )
+    end
+    
+    def get_name(user1, user2)
+      
+      user = [user1, user2].sort
+      "private_#{user[0].id}_#{user[1].id}"
     end
 
 

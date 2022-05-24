@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
   mount Sidekiq::Web => '/sidekiq'
   
+  get 'users/show'
+  
   
   #resources
   resources :complaints do
@@ -20,31 +22,41 @@ Rails.application.routes.draw do
     resources :messages
   end
   
-  
-  
   resources :roles
-  devise_for :users, :path_prefix => 'd', :controllers => { registrations: 'users/registrations' }
-  resources :users
+  
+  #devise_for :users, :path_prefix => 'd', :controllers => { registrations: 'users/registrations' }
+  devise_for :users, :path_prefix => 'd'
+  
+  devise_scope :user do
+    get 'users', to: 'devise/sessions#new'
+  end
+  
+  resources :users do
+    member do
+      get "show_chat"
+    end
+  end
   
   #link_to "Update Completed Status", update_completed_status_path(complaint), method: :patch
+
   
   
   #get page links
   get 'static_pages/home'
   get 'static_pages/complaints_charts'
-  get 'rooms/index'
   
   get 'complaints/new', to: 'complaints#new', as: 'newcomplaint'
   
   # list of all users
-  get 'users',          to: 'users#index',  as: :all_users
+  #get 'users',          to: 'users#index',  as: :all_users
 
   # single user
-  get 'users/:id',      to: 'users#show',    as: :single_user
-  
-  
+  #get 'users/:id',      to: 'users#show',    as: :single_user
+  get 'user/:id', to: 'users#show', as: 'user_profile'
+
   
   #get 'users/:id/edit', to: 'users#edit',    as: :edit_user
+  
   
   
   #match '/users',   to: 'users#index',   via: 'get'
