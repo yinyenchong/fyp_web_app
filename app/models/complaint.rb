@@ -91,11 +91,7 @@ class Complaint < ApplicationRecord
         self.update_attribute(:escalated_to_user_id, executive_dean_to_escalate.id)
         self.update_attribute(:escalated, true)
         self.update_attribute(:escalated_time, DateTime.now())
-        
-        #self.escalated_to_user_id = executive_dean_to_escalate.id
-        #self.escalated = true
-        #self.escalated_time = DateTime.now()
-        
+
       end
     end
     

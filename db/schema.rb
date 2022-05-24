@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_064753) do
+ActiveRecord::Schema.define(version: 2022_05_24_062817) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,16 @@ ActiveRecord::Schema.define(version: 2022_05_18_064753) do
     t.index ["user_id"], name: "index_complaints_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -79,6 +89,13 @@ ActiveRecord::Schema.define(version: 2022_05_18_064753) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_private", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,4 +123,6 @@ ActiveRecord::Schema.define(version: 2022_05_18_064753) do
   add_foreign_key "complaint_replies", "complaints"
   add_foreign_key "complaint_replies", "users"
   add_foreign_key "complaints", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
 end

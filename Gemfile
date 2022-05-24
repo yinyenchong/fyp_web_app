@@ -27,6 +27,7 @@ gem 'groupdate'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'redis'
+gem 'turbo-rails'
 
 
 group :development, :test do

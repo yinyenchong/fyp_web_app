@@ -16,8 +16,7 @@ module FypWebApp
     Sidekiq.configure_server { |c| c.redis = { url: ENV['REDIS_URL'] } }
 
     
-    
-    config.time_zone = 'Kuala Lumpur'
+    #config.time_zone = 'Kuala Lumpur'
     #config.active_record.default_timezone = :local
     
     

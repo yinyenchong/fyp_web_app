@@ -10,11 +10,14 @@ Rails.application.routes.draw do
   resources :complaints do
     #patch :update_completed_status, on: :member
     resources :complaint_replies
-   
   end
   
   resources :complaint do
     patch :update_completed_status, on: :member
+  end
+  
+  resources :rooms do
+    resources :messages
   end
   
   
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
   #get page links
   get 'static_pages/home'
   get 'static_pages/complaints_charts'
+  get 'rooms/index'
   
   get 'complaints/new', to: 'complaints#new', as: 'newcomplaint'
   

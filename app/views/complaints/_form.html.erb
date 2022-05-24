@@ -34,7 +34,7 @@
     <!-- User.order(:name) or whatever parameter you want to arrange the users by -->
     <!-- f.collection_select :assignee_id, User.order(:id),:id,:name, include_blank: true %> -->
 
-    <%= f.collection_select :assignee_id, User.without_role(:admin).without_role(:student).order(:name),:id,:name, include_blank: true %> 
+    <%= f.collection_select :assignee_id, User.only_faculty.order(:name),:id,:name, include_blank: true %> 
     
    
   </div>

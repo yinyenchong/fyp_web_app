@@ -19,3 +19,4 @@ require("channels")
 require("trix")
 require("@rails/actiontext")
 import "chartkick/chart.js"
+import "@hotwired/turbo-rails"

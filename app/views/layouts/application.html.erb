@@ -13,6 +13,22 @@
     
     <%= render 'layouts/shim' %>
     
+  
+    <style>
+    
+      <%= ".msg-#{current_user&.id}" %> {
+        background-color: #98d0d4 !important;
+        padding: 10px;
+      }
+      
+      
+      <%= ".cont-#{current_user&.id}" %> {
+        display: flex;
+        justify-content: flex-end
+      }
+      
+    </style>
+    
     <!--[if lt IE 9]>
     <script
     src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.j
