@@ -6,7 +6,7 @@
       
     <div class="d-flex align-items-center">
         
-      <%= image_tag(message.user.avatar, class: 'chat_pfp') %>
+      <%= image_tag(message.user.avatar, class: 'chat_pfp', data: {turbo: "false"}) %>
       
       <div>
         <h6 class="name"> <%= message.user.name %></h6>

@@ -65,6 +65,7 @@ class User < ApplicationRecord
     def before_update_delete_roles(role)
       # do something before it gets added
       roles.delete(roles.where(:name => role))
+      
     end
   
     def assign_default_role

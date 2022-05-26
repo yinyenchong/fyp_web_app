@@ -32,7 +32,7 @@ class Room < ApplicationRecord
     
     def participant?(room, user)
         room.participants.where(user: user).exists?
-        Participant.where(user_id: user_id, room_id: room.id).exists?
+        #Participant.where(user_id: user_id, room_id: room.id).exists?
     end
     
 end
