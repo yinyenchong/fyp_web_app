@@ -2,7 +2,6 @@ require 'csv'
 
 class User < ApplicationRecord
   rolify
-  
   #rolify :before_add => :before_update_delete_roles
 
   # Include default devise modules. Others available are:
@@ -22,7 +21,12 @@ class User < ApplicationRecord
     
   #after_create :assign_default_role
   
+  #after_create :add_default_avatar
+  
   after_create_commit { broadcast_append_to "users" }
+  
+  after_commit :add_default_avatar, on: %i[create update]
+
 
   validate :must_have_a_role, on: :update
   
@@ -66,8 +70,18 @@ class User < ApplicationRecord
     def assign_default_role
       self.add_role(:student) if self.roles.blank?
     end
+  
     
-
+    def add_default_avatar
+      return if avatar.attached?
+      
+      avatar.attach(
+        io: File.open(Rails.root.join('app', 'assets', 'images', 'avatar_icon.png')),
+        filename: 'avatar_icon.png',
+        content_type: 'image/png'
+      )
+      
+    end
     
     def self.to_csv
       attributes = %w{id name email}
@@ -82,7 +96,6 @@ class User < ApplicationRecord
     end
     
     def calculate_stats_for_users
-    
     
     
     end
