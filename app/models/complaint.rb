@@ -23,8 +23,6 @@ class Complaint < ApplicationRecord
   before_commit :escalate_to_executive_dean!
   
   
-  
-  
   scope :filter_by_assignee_id, ->(current_user) {
     
     where('assignee_id = ?', current_user)
@@ -53,48 +51,46 @@ class Complaint < ApplicationRecord
   scope :filter_by_staff, -> {
     where('!current_user.has_role? :student')
   }
+  
+  def escalate_to_executive_dean!
+    
+    start_time = self.created_at
+    end_time = DateTime.now
+    
+    #executive_deans = Role.find_by_name(:executive_dean).users
+    
+    # syntax works and complaint gets escalated
+    #test_user = User.find(3)
+    
+    # callback infinite loop if you use test_user_2 
+    #test_user_2 = executive_deans.limit(1).pluck(:id)
+    
+    #test_user_3 = User.where(role: :executive_dean)
+    
+    
+    #test_user_4 = User.joins(:roles).where(roles: {name: 'executive_dean'})
+    
+    
+    executive_dean_to_escalate = User.joins(:roles).find_by(roles: {name: 'executive_dean'})
+    
+    if TimeDifference.between(start_time, end_time).in_seconds > 30 and self.completed == false
+      
+      #self.update_attribute(:escalated_to_user_id, executive_deans.ids)
+      #self.update_attribute(:escalated_to_user_id, test_user.id)
+      
+      # update_attribute calls "save", so do not use after_save+_commit because you'll be stuck in callback loop
+      # no don't use this
+      #self.update_attribute(:escalated_to_user_id, test_user_2.id)
+      
+      self.update_attribute(:escalated_to_user_id, executive_dean_to_escalate.id)
+      self.update_attribute(:escalated, true)
+      self.update_attribute(:escalated_time, DateTime.now())
+    
+    end
+  end
+  
 
   private
-
-    
-    
-    def escalate_to_executive_dean!
-      
-      start_time = self.created_at
-      end_time = DateTime.now
-      
-      #executive_deans = Role.find_by_name(:executive_dean).users
-      
-      # syntax works and complaint gets escalated
-      #test_user = User.find(3)
-      
-      # callback infinite loop if you use test_user_2 
-      #test_user_2 = executive_deans.limit(1).pluck(:id)
-      
-      #test_user_3 = User.where(role: :executive_dean)
-      
-      
-      #test_user_4 = User.joins(:roles).where(roles: {name: 'executive_dean'})
-      
-  
-      executive_dean_to_escalate = User.joins(:roles).find_by(roles: {name: 'executive_dean'})
-
-      if TimeDifference.between(start_time, end_time).in_seconds > 10 and self.completed == false
-        
-        #self.update_attribute(:escalated_to_user_id, executive_deans.ids)
-        #self.update_attribute(:escalated_to_user_id, test_user.id)
-        
-        # update_attribute calls "save", so do not use after_save+_commit because you'll be stuck in callback loop
-        # no don't use this
-        #self.update_attribute(:escalated_to_user_id, test_user_2.id)
-        
-        self.update_attribute(:escalated_to_user_id, executive_dean_to_escalate.id)
-        self.update_attribute(:escalated, true)
-        self.update_attribute(:escalated_time, DateTime.now())
-
-      end
-    end
-    
   
     def self.to_csv
       attributes = %w{id title user_id assignee_id created_at last_reply_at completed escalated completed_time}

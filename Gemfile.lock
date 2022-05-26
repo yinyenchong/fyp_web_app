@@ -330,7 +330,7 @@ DEPENDENCIES
   chartkick
   devise
   faker (= 2.11.0)
-  groupdate
+  groupdate (= 6.1.0)
   guard (= 2.16.2)
   guard-minitest (= 2.4.6)
   image_processing (= 1.9.3)

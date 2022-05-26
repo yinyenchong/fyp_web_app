@@ -27,8 +27,6 @@ class ComplaintsController < ApplicationController
       @complaints = Complaint.where(["assignee_id = ?", current_user])
     end
     
-    
-    
     authorize @complaints
     
   end
@@ -38,6 +36,7 @@ class ComplaintsController < ApplicationController
   def show
     @complaint_replies = @complaint.complaint_replies
     EscalateJob.perform_now(@complaint)
+   
   end
  
  
@@ -58,9 +57,15 @@ class ComplaintsController < ApplicationController
     @complaint = Complaint.new(complaint_params)
     @complaint.user = current_user
     
+    # do not stick the escalate job in create. Why? Because you're trying to compare the time difference to escalate the complaint...
+    # when it hasn't even been created yet
+    # no time travelling allowed
+    
     #@complaint.escalate_to_executive_dean
     
-    EscalateJob.perform_now(@complaint)
+    #EscalateJob.perform_now(@complaint)
+    
+    
     
     authorize @complaint
  

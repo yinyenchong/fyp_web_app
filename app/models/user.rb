@@ -26,7 +26,7 @@ class User < ApplicationRecord
   after_create_commit { broadcast_append_to "users" }
   
   after_commit :add_default_avatar, on: %i[create update]
-
+  
 
   validate :must_have_a_role, on: :update
   
@@ -70,6 +70,7 @@ class User < ApplicationRecord
     def assign_default_role
       self.add_role(:student) if self.roles.blank?
     end
+  
   
     
     def add_default_avatar
