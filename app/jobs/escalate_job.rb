@@ -4,7 +4,7 @@ class EscalateJob < ApplicationJob
   def perform(complaint)
     # Do something later
     
-    return if complaint.escalated_time > Time.current
+    #return if complaint.escalated_time > Time.current
     
     complaint.escalate_to_executive_dean!
   end
