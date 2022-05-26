@@ -43,4 +43,5 @@ User.second.add_role :student
 User.third.add_role :lecturer
 User.fourth.add_role :program_director
 User.fifth.add_role :head_of_school
+User.find(6).add_role :executive_dean
 
