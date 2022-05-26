@@ -21,7 +21,7 @@ class User < ApplicationRecord
     
   #after_create :assign_default_role
   
-  #after_create :add_default_avatar
+  
   
   after_create_commit { broadcast_append_to "users" }
   
