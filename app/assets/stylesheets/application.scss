@@ -63,23 +63,28 @@ body{
     margin-right: 0px !important;
     overflow-x: hidden;
     overflow-y: hidden;
-    
 }
 
 .msg-content{
     width: 80%;
     margin-right: 5px;
-    
 }
 
 .message-box{
     word-wrap: break-word;
     width: fit-content;
-    max-width: 40%;
+    max-width: 50%;
     padding: 5px;
     border-radius: 10px;
     margin-bottom: 10px;
     background-color: #e4ede6;
     padding: 10px;
     
+}
+
+.chat_pfp {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
 }

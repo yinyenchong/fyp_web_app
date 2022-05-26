@@ -14,7 +14,7 @@
   <% if current_user.has_role? :admin %>
     
     <% Role.all.each do |role| %>
-      <%= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id) %>
+      <%= radio_button_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id) %>
       <%= role.name %></br>
     <% end %>
   

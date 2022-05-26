@@ -21,13 +21,13 @@ class User < ApplicationRecord
     
   #after_create :assign_default_role
   
-  
-  
   after_create_commit { broadcast_append_to "users" }
   
-  after_commit :add_default_avatar, on: %i[create update]
+  #after_commit :add_default_avatar, on: %i[create update]
+  #after_create :add_default_avatar, on: %i[create update]
   
-
+  after_create :add_default_avatar
+  
   validate :must_have_a_role, on: :update
   
   scope :all_except, -> (user) {
@@ -70,8 +70,6 @@ class User < ApplicationRecord
     def assign_default_role
       self.add_role(:student) if self.roles.blank?
     end
-  
-  
     
     def add_default_avatar
       return if avatar.attached?
