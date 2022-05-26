@@ -18,8 +18,6 @@ class UsersController < ApplicationController
     
     authorize @users
     
-    
-    
   
   end
   

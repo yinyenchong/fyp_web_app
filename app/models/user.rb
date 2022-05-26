@@ -23,7 +23,6 @@ class User < ApplicationRecord
   #after_create :assign_default_role
   
   after_create_commit { broadcast_append_to "users" }
-  
 
   validate :must_have_a_role, on: :update
   
@@ -45,6 +44,11 @@ class User < ApplicationRecord
     
   }
   
+    
+  def self.without_role(role)
+    where.not(id: User.with_role(role).ids)
+  end
+  
 
   private
   
@@ -59,15 +63,11 @@ class User < ApplicationRecord
       roles.delete(roles.where(:name => role))
     end
   
-  
     def assign_default_role
       self.add_role(:student) if self.roles.blank?
     end
     
-    
-    def self.without_role(role)
-      where.not(id: User.with_role(role).ids)
-    end
+
     
     def self.to_csv
       attributes = %w{id name email}

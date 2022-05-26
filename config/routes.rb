@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   
   get 'users/show'
   
-  
-  #resources
+  # resources
   resources :complaints do
     #patch :update_completed_status, on: :member
     resources :complaint_replies
@@ -32,10 +31,6 @@ Rails.application.routes.draw do
       get "show_profile"
     end
   end
-  
-  #link_to "Update Completed Status", update_completed_status_path(complaint), method: :patch
-
-  
   
   #get page links
   get 'static_pages/home'

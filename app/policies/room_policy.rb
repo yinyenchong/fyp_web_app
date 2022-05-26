@@ -34,7 +34,7 @@ class RoomPolicy < ApplicationPolicy
   end
   
   def update?
-    return true if !user.has_role? :student or user.id == record.id
+    return true if !user.has_role? :student and user.id == record.id
   end
   
   def destroy?
