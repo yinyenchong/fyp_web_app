@@ -5,6 +5,7 @@ class Message < ApplicationRecord
   after_create_commit {broadcast_append_to room}
   before_create :confirm_participant
   
+  validates_presence_of :body
   
   def confirm_participant
     

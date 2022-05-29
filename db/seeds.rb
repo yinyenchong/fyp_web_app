@@ -23,20 +23,11 @@ User.create!(name: "Example Admin ",
   email = "example-#{n+1}@gmail.com"
   password = "venividivici"
   User.create!(name: name,
-  email: email,
-  password: password,
-  password_confirmation: password,
+              email: email,
+              password: password,
+              password_confirmation: password,
   )
 end
-
-#2.times do |n|
-  
-  #id = n + 1
-  
-  #User.find(id)
-  #User.add_role! :admin
-
-#end
 
 User.first.add_role :admin
 User.second.add_role :student
@@ -44,4 +35,73 @@ User.third.add_role :lecturer
 User.fourth.add_role :program_director
 User.fifth.add_role :head_of_school
 User.find(6).add_role :executive_dean
+
+5.times do |n|
+  title = "Testing Title #{n+1} for Lecturer"
+  body = "Test"
+  completed = false
+  escalated = false
+  assignee_id = 3
+  user_id = 2
+  Complaint.create!(title: title,
+              body: body,
+              completed: completed,
+              escalated: escalated,
+              assignee_id: assignee_id,
+              user_id: user_id
+  )
+  
+end
+
+5.times do |n|
+  title = "Testing Title #{n+1} for Program Director"
+  body = "Test"
+  completed = false
+  escalated = false
+  assignee_id = 4
+  user_id = 2
+  Complaint.create!(title: title,
+              body: body,
+              completed: completed,
+              escalated: escalated,
+              assignee_id: assignee_id,
+              user_id: user_id
+  )
+  
+end
+
+5.times do |n|
+  title = "Testing Title #{n+1} for Head of School"
+  body = "Test"
+  completed = false
+  escalated = false
+  assignee_id = 5
+  user_id = 2
+  Complaint.create!(title: title,
+              body: body,
+              completed: completed,
+              escalated: escalated,
+              assignee_id: assignee_id,
+              user_id: user_id
+  )
+  
+end
+
+5.times do |n|
+  title = "Testing Title #{n+1} for Executive Dean"
+  body = "Test"
+  completed = false
+  escalated = false
+  assignee_id = 6
+  user_id = 2
+  Complaint.create!(title: title,
+              body: body,
+              completed: completed,
+              escalated: escalated,
+              assignee_id: assignee_id,
+              user_id: user_id
+  )
+  
+end
+
 

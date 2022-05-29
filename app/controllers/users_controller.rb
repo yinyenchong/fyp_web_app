@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   
   #after_action :verify_authorized, only: [:index, :show, :edit, :update, :destroy]
   
+  
   def index
     
     @users = User.all
@@ -36,7 +37,6 @@ class UsersController < ApplicationController
   end
   
   def show
-   
     
     @user = User.find(params[:id])
     @users = User.all_except(current_user)
@@ -109,6 +109,7 @@ class UsersController < ApplicationController
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
+      flash[:danger] = "Email or password incorrect."
       redirect_to(root_url) unless current_user?(@user)
     end
     
@@ -116,7 +117,6 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
-  
   
   
 end

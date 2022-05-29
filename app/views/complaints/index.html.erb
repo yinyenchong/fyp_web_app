@@ -1,34 +1,43 @@
-<table class="table table-bordered table-striped table-condensed table-hover">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Created At</th>
-      <th>Last Updated</th>
-      <th>Assigned To</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
- 
-  <tbody>
-    <% @complaints.each do |complaint| %>
-    <tr>
-      
-      <td><%= complaint.try(:title) %></td>
-      <td><%= complaint.try(:created_at) %></td>
-      <td><%= complaint.try(:updated_at) %></td>
-      <td><%= complaint.assignee.try(:name) %></td>
-      
-      
-      <td><%= link_to 'Show', complaint %></td>
-      <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
-      <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      
-     
-    </tr>
-    <% end %>
-  </tbody>
-</table>
- 
-<br>
- 
-<%= link_to 'New Complaint', new_complaint_path %>
+<% provide(:title, 'All Complaints') %>
+
+
+<h1>All Complaints</h1>
+
+<div class="index-tables">
+
+  <table class="table table-bordered table-striped table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Created At</th>
+        <th>Last Updated</th>
+        <th>Assigned To</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+   
+    <tbody>
+      <% @complaints.each do |complaint| %>
+      <tr>
+        
+        <td><%= complaint.try(:title) %></td>
+        <td><%= complaint.try(:created_at) %></td>
+        <td><%= complaint.try(:updated_at) %></td>
+        <td><%= complaint.assignee.try(:name) %></td>
+        
+        
+        <td><%= link_to 'Show', complaint %></td>
+        <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
+        <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+       
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+   
+  <br>
+   
+  <%= link_to 'New Complaint', new_complaint_path %>
+
+</div>

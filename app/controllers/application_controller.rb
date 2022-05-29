@@ -12,21 +12,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
   
-  
-
-      def configure_permitted_parameters
-         devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password)}
-         devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:avatar, :email, :password, :current_password)}
-      end
-    
-
-    
  
   private
  
     def user_not_authorized
       flash[:warning] = "You are not authorized to perform this action."
       redirect_to(request.referrer || root_path)
+      #redirect_to(request.referrer || root_path) 
+      return
     end
   
 end

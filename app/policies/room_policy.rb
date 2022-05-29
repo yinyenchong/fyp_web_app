@@ -24,7 +24,7 @@ class RoomPolicy < ApplicationPolicy
   end
   
   def show?
-    return true if !user.has_role? :student
+    return true if !user.has_role? :student and !(user.id == record.id)
   end
   
   def edit?
