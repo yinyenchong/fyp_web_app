@@ -14,6 +14,7 @@ end
 # Create a main sample user.
 User.create!(name: "Example Admin ",
   email: "example@gmail.com",
+  birthday: Date.new(1980, 6, 11),
   password: "venividivici",
   password_confirmation: "venividivici")
   
@@ -22,10 +23,12 @@ User.create!(name: "Example Admin ",
   name = Faker::Name.name
   email = "example-#{n+1}@gmail.com"
   password = "venividivici"
+  birthday = Date.new(1990, 9, 18)
   User.create!(name: name,
               email: email,
               password: password,
               password_confirmation: password,
+              birthday: birthday
   )
 end
 

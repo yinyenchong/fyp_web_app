@@ -4,7 +4,6 @@
 <div class="charts">
     
     <% if current_user.has_role? :admin %>
-    
 
         <h1>Total Number of Created Complaints</h1>
         <%= line_chart Complaint.group_by_day(:created_at, range: 1.week.ago..Time.now, expand_range: true).count %>

@@ -9,6 +9,8 @@
         </br>
         <%= @user.name %>
         <br>
+        <h1>User ID: <%= @user.id %>  </h1> 
+        <h1>Birthday: <%= @user.birthday %>  </h1> 
         <h1>Role ID: <%= @user.role_ids %>  </h1> 
         <h1>Role Name: <%= @user.roles.pluck(:name)  %></h1> 
       </h1>
