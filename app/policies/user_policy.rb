@@ -30,7 +30,7 @@ class UserPolicy < ApplicationPolicy
   def show?
     #return true 
     #return true if !user.has_role? :student and !(user.id == record.id)
-    return true if !user.has_role? :student
+    return true if !user.has_role? :student and !(user.id == record.id) 
   end
   
   def show_profile?

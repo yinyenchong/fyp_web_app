@@ -20,7 +20,9 @@ class Complaint < ApplicationRecord
   
 
   # this works when not being run as a job
-  before_commit :escalate_to_executive_dean!
+  #before_commit :escalate_to_executive_dean!
+  #before_commit :escalate_to_executive_dean_by_index!
+  
   
   
   scope :filter_by_assignee_id, ->(current_user) {
@@ -73,7 +75,7 @@ class Complaint < ApplicationRecord
     
     executive_dean_to_escalate = User.joins(:roles).find_by(roles: {name: 'executive_dean'})
     
-    if TimeDifference.between(start_time, end_time).in_seconds > 30 and self.completed == false
+    if TimeDifference.between(start_time, end_time).in_seconds > 30 and self.completed == false and self.escalated == false
       
       #self.update_attribute(:escalated_to_user_id, executive_deans.ids)
       #self.update_attribute(:escalated_to_user_id, test_user.id)
@@ -88,6 +90,31 @@ class Complaint < ApplicationRecord
     
     end
   end
+  
+  
+  def self.escalate_to_executive_dean_by_index!
+  #def escalate_to_executive_dean_by_index!
+    
+    executive_dean_to_escalate = User.joins(:roles).find_by(roles: {name: 'executive_dean'})
+    
+    all.find_each.each do |complaint|
+      
+      start_time = complaint.created_at
+      end_time = DateTime.now
+      
+      if TimeDifference.between(start_time, end_time).in_seconds > 30 and complaint.completed == false and complaint.escalated == false
+      
+      
+        complaint.update_attribute(:escalated_to_user_id, executive_dean_to_escalate.id)
+        complaint.update_attribute(:escalated, true)
+        complaint.update_attribute(:escalated_time, DateTime.now())
+      
+      end
+      
+    end
+    
+  end
+  
   
 
   private

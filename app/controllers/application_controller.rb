@@ -12,13 +12,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
   
- 
   private
  
     def user_not_authorized
       flash[:warning] = "You are not authorized to perform this action."
-      redirect_to(request.referrer || root_path)
-      #redirect_to(request.referrer || root_path) 
+      redirect_to(request.referrer || root_path) 
       return
     end
   

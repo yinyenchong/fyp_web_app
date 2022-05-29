@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   
   #get page links
   get 'static_pages/home'
-  get 'static_pages/complaints_charts'
+  #get 'static_pages/complaints_charts'
+  
+  get 'complaints_charts', to: 'static_pages#complaints_charts', as: 'weekly_complaints_charts'
   
   get 'complaints/new', to: 'complaints#new', as: 'newcomplaint'
   

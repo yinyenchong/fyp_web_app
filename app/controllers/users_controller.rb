@@ -49,9 +49,11 @@ class UsersController < ApplicationController
     @message = Message.new
     @messages = @single_room.messages.order(created_at: :asc)
     
+    authorize @user
+    
     render 'rooms/index'
     
-    authorize @user
+   
   end
 
   # PATCH/PUT /users/1
@@ -117,6 +119,5 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
-  
   
 end

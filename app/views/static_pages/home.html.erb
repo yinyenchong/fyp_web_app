@@ -23,11 +23,10 @@
       <% if !current_user.has_role? :student %>
         
         <%= link_to 'Chat Interface', rooms_path, :class => "btn" %> |
-        <%= link_to 'Complaint Statistics', static_pages_complaints_charts_path, :class => "btn" %>
+        <%= link_to 'Complaint Statistics', weekly_complaints_charts_path, :class => "btn" %>
       
       
       <% end %>
-      
       
       
       

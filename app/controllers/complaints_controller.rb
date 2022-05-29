@@ -22,10 +22,14 @@ class ComplaintsController < ApplicationController
         format.csv { send_data @complaints.to_csv, filename: "complaints-#{Date.today}.csv" }
       end
       
-      
     else  
       @complaints = Complaint.where(["assignee_id = ?", current_user])
     end
+    
+    # this works when not being called as a job
+    Complaint.escalate_to_executive_dean_by_index!
+    
+    
     
     authorize @complaints
     
