@@ -28,6 +28,8 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'redis'
 gem 'turbo-rails'
+gem 'pagy'
+gem 'stimulus-rails'
 
 
 group :development, :test do

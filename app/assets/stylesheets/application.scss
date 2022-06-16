@@ -35,9 +35,9 @@ body{
 }
 
 #messages{
-    height: calc(31vh - 20px);
+    height: calc(40vh - 50px);
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 #room_container{

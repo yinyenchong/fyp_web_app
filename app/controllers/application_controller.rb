@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
  
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  
+  #before_action :turbo_frame_request_variant
+  #before_action :set_current_user
 
   include Pundit::Authorization
+  include Pagy::Backend
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     
@@ -10,6 +15,14 @@ class ApplicationController < ActionController::Base
     added_attrs = [:name, :email, :password, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+  
+  def turbo_frame_request_variant
+    request.variant = :turbo_frame if turbo_frame_request?
+  end
+  
+  def set_current_user
+    Current.user = current_user
   end
   
   private
