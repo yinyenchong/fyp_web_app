@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,19 +11,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinkstrack': 'reload' %>
     
     <%= render 'layouts/shim' %>
+
     
     <style>
-    
       <%= ".msg-#{current_user&.id}" %> {
-        background-color: #98d0d4 !important;
-        padding: 10px;
+      background-color: #98d0d4 !important;
+      padding: 10px;
       }
       
       <%= ".cont-#{current_user&.id}" %> {
-        display: flex;
-        justify-content: flex-end
+      display: flex;
+      justify-content: flex-end
       }
-      
     </style>
     
     

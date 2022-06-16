@@ -1,23 +1,55 @@
 <% provide(:title, 'User Profile') %>
 
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= image_tag(@user.avatar, size: '250x250') if @user.avatar.attached? %>
-        
-        </br>
-        <%= @user.name %>
-        <br>
-        <h1>User ID: <%= @user.id %>  </h1> 
-        <h1>Birthday: <%= @user.birthday %>  </h1> 
-        <h1>Role ID: <%= @user.role_ids %>  </h1> 
-        <h1>Role Name: <%= @user.roles.pluck(:name)  %></h1> 
-      </h1>
-      </br>
-      
+<div class="profile-container">
+  <div class="profile-inner">
+    <div class="profile-title">PROFILE</div>
+    
+    <div class="profile-content">
+      <aside class="profile-details">
+          <h1>
+            <%= image_tag(@user.avatar, size: '250x250') if @user.avatar.attached? %>
+            </br>
+            
+            <div class="profile-item">
+              <div class="profile-item-text">
+            <%= @user.name %>
+            </div>
+            </div>
+          
+            <br>
+            <div class="profile-item">
+              <div class="profile-item-text">
+            <h1>User ID: <%= @user.id %>  </h1> 
+            </div>
+            </div>
+            
+            <div class="profile-item">
+              <div class="profile-item-text">
+            <h1>ID: <%= @user.person_id %>  </h1> 
+            </div>
+            </div>
+            
+            <div class="profile-item">
+              <div class="profile-item-text">
+            <h1>Birthday: <%= @user.birthday %>  </h1> 
+            </div>
+            </div>
+            
+            
+            <div class="profile-item">
+              <div class="profile-item-text">
+            <h1>Role Name: <%= @user.roles.pluck(:name)  %></h1> 
+            </div>
+            </div>
+            
+            </h1>
+            </br>
+    </div>
+    
+    <%= link_to 'Edit Profile', edit_user_path, :class => 'button1-tables' %>
       
     </section>
   </aside>
 </div>
 
+</div>

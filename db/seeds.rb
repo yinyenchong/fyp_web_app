@@ -10,12 +10,12 @@
   Role.create!(name: role)
 end
 
-
 # Create a main sample user.
 User.create!(name: "Example Admin ",
   email: "example@gmail.com",
   birthday: Date.new(1980, 6, 11),
   password: "venividivici",
+  person_id: "0000000",
   password_confirmation: "venividivici")
   
 # Generate a bunch of additional users.
@@ -24,11 +24,13 @@ User.create!(name: "Example Admin ",
   email = "example-#{n+1}@gmail.com"
   password = "venividivici"
   birthday = Date.new(1990, 9, 18)
+  person_id = "030000#{n+1}"
   User.create!(name: name,
               email: email,
               password: password,
               password_confirmation: password,
-              birthday: birthday
+              birthday: birthday,
+              person_id: person_id
   )
 end
 

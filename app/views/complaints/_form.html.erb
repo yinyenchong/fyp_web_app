@@ -10,39 +10,40 @@
       </ul>
     </div>
   <% end %>
- 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, autocomplete: 'off' %>
-  </div>
- 
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.text_area :body, autocomplete: 'off' %>
-  </div>
   
   
-  <div class="attachment">
-    <%= f.label :"Attach File" %>
-    <%= f.file_field :complaintfile, accept: 'image/jpeg, image/gif, image/png, image/bmp, image/pdf' %>
-   
-  </div>
-  
-  <div>
-    <%= f.label :"Addressed To" %>
-    
-    <!-- User.order(:name) or whatever parameter you want to arrange the users by -->
-    <!-- f.collection_select :assignee_id, User.order(:id),:id,:name, include_blank: true %> -->
+  <div class="edit-content">
 
-    <%= f.collection_select :assignee_id, User.only_faculty.order(:name),:id,:name, include_blank: true %> 
+      <%= f.label :title, :style => 'margin-left: 15%;' %>
+      <br>
+      <%= f.text_field :title, autocomplete: 'off', :class => 'edit-title'%>
+      <br>
+      <br>
+      <%= f.label :body, :style => 'margin-left: 15%;' %>
+      <br>
+      <%= f.text_area :body, autocomplete: 'off', :class => 'edit-detail' %>
+      <br>
+      <br>
+  
+    <div class="attachment">
+      <%= f.label :"Attach File", :style => 'margin-left: 15%;' %>
+      <%= f.file_field :complaintfile, accept: 'image/jpeg, image/gif, image/png, image/bmp, image/pdf', :class => 'upload1' %>
+   
+    </div>
+      <br>
+      <br>
+      <%= f.label :"Addressed To", :style => 'margin-left: 15%;' %>
+    
+        <!-- User.order(:name) or whatever parameter you want to arrange the users by -->
+        <!-- f.collection_select :assignee_id, User.order(:id),:id,:name, include_blank: true %> -->
+    <div class="edit-select">
+      <%= f.collection_select :assignee_id, User.only_faculty.order(:name),:id,:name, include_blank: true %> 
     
    
-  </div>
+    </div>
   
  
-  <div class="actions">
-    <%= f.submit "Submit Complaint" %>
+    <%= f.submit "Submit Complaint", :class => 'submit-btn' %>
+  
   </div>
-  
-  
 <% end %>

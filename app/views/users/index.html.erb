@@ -18,11 +18,11 @@
     <tbody>
       <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.name, user %></td>
+        <td><%= link_to user.name, user, :class => 'a' %></td>
         <td><%= user.created_at %></td>
         <td><%= user.roles.pluck(:name) %></td>
         <!-- Might want to change to edit_user_path(user) -->
-        <td><%= link_to 'Edit Roles', edit_user_path(user.id) %></td>
+        <td><%= link_to 'Edit Roles', edit_user_path(user.id), :class => 'button2-tables' %></td>
       </tr>
       <% end %>
     </tbody>

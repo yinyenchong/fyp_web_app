@@ -1,59 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Submitter:</strong>
-  <%= @complaint.user.name %>
-</p>
 
-<p>
-  <strong>Addressed To:</strong>
-  <%= @complaint.assignee.name %>
-</p>
+<div class="show-content">
+    <div class="show-title">
+      <div class="show-detail">Submitter:</div>
+      <div class="show-detail1"><%= @complaint.user.name %></div>
+    </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @complaint.title %>
-</p>
+    <div class="show-title">
+      <div class="show-detail">Addressed To:</div>
+      <div class="show-detail1"><%= @complaint.assignee.name %></div>
+    </div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @complaint.body %>
-</p>
+    <div class="show-title">
+      <div class="show-detail">Title:</div>
+      <div class="show-detail1"><%= @complaint.title %></div>
+    </div>
 
-<p>
-  <strong>Attached File:</strong>
-  <%= image_tag(@complaint.complaintfile) if @complaint.complaintfile.attached? %>
-</p>
+    <div class="show-title">
+      <div class="show-detail">Body:</div>
+      <div class="show-detail1"><%= @complaint.body %></div>
+    </div>
 
-<p>
-  <strong>Completed:</strong>
-  <%= @complaint.completed %>
-</p>
+    <div class="show-title1">
+      <div class="show-detail2">Attached File:</div>
+      <div class="show-file"><%= image_tag(@complaint.complaintfile) if @complaint.complaintfile.attached? %></div>
+    </div>
 
-<p>
-  <strong>Completed Time:</strong>
-  <%= @complaint.completed_time %>
-</p>
+    <div class="show-title">
+      <div class="show-detail">Completed:</div>
+      <div class="show-detail1"><%= @complaint.completed %></div>
+    </div>
 
-<p>
-  <strong>Escalated:</strong>
-  <%= @complaint.escalated %>
-</p>
+    <div class="show-title">
+      <div class="show-detail">Completed Time:</div>
+      <div class="show-detail1"><%= @complaint.completed_time %></div>
+    </div>
 
-<p>
-  <strong>Escalated Time:</strong>
-  <%= @complaint.escalated_time %>
-</p>
+    <div class="show-title">
+      <div class="show-detail">Escalated:</div>
+      <div class="show-detail1"><%= @complaint.escalated %></div>
+    </div>
 
-<p>
-  <strong>Escalated To:</strong>
-  <%= @complaint.escalated_to_user.name if @complaint.escalated_to_user.present? %>
-</p>
+    <div class="show-title">
+      <div class="show-detail">Escalated Time:</div>
+      <div class="show-detail1"><%= @complaint.escalated_time %></div>
+    </div>
+
+    <div class="show-title">
+      <div class="show-detail">Escalated To:</div>
+      <div class="show-detail1"><%= @complaint.escalated_to_user.name if @complaint.escalated_to_user.present? %></div>
+    </div>
 
 
-
-
-<div class="container">
+<div class="reply">
   
   <% @complaint_replies.each do |complaint_reply| %>
     <%= render 'complaint_replies/complaint_reply', post: @complaint, complaint_reply: complaint_reply %>
@@ -71,5 +71,6 @@
 </div>
 
 
-<%= link_to 'Edit', edit_complaint_path(@complaint) %> |
-<%= link_to 'Back', complaints_path %>
+<%= link_to 'Back', complaints_path, :class => 'button-tables' %>
+
+</div>

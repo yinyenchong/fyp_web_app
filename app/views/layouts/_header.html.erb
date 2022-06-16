@@ -1,7 +1,7 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     
-    <%= link_to 'SCE Student Online Application System', root_path, class: 'navbar-brand' %>
+    <%= link_to 'SCE Student Online Application System', root_path, :class => 'navbar-brand' %>
    
     <div id="navbar">
   
@@ -9,8 +9,8 @@
         <li><% link_to 'Home', root_path %></li>
         <ul class="nav navbar-nav pull-right">
           <% if user_signed_in? %>
-            <li><%= current_user.name %></li>
-            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+            <li class="name"><%= current_user.name %></li>
+            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, :class => "" %></li>
           <% else %>
             <li><%= link_to 'Log In', new_user_session_path %></li>
             <li><%= link_to 'Sign Up', new_user_registration_path %></li>

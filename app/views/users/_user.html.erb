@@ -1,8 +1,8 @@
-<li class="list-group-item d-flex align-items-center justify-content-between user_list_item">
-  <div>
-    <%= link_to image_tag(user.avatar, class: 'chat_pfp'), user %>
+<div class="conversation-area">
+  
+  <div class="msg">
+  <%= link_to image_tag(user.avatar, class: 'chat_pfp msg1'), user %>
+  
+  <%= link_to user.name, user, class:'msg-detail msg1', data: {turbo: "false"}%>
   </div>
-  
-  <%= link_to user.name, user, class:'ms-2 me-auto username', data: {turbo: "false"}%>
-  
-</li>
+</div>

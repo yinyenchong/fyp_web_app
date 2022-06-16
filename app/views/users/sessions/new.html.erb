@@ -1,26 +1,43 @@
-<h2>Log in</h2>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<template>
+    <div class="dashboard-editor-container">
+    </div>
+</template>
+
+    <div class="login-left">
+		<div style="font-size: 45px;">Log in</div>
+      <div></div>
+      <div class="line"></div>
+    </div>
+
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="login-right">
+      <div class="input">
+      <img style="margin-right: 10px;" class="email">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      
+      <div class="input">
+      <img style="margin-right: 10px;" class="password">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+      
+      <%= f.submit 'Log in', :class => "login" %>
+    
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
+    <div class="forget">
       <%= f.label :remember_me %>
     </div>
+  <%= f.check_box :remember_me, :style => "margin-top: 0;" %>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
 <% end %>
 
 <%= render "users/shared/links" %>
+
+</div>

@@ -29,8 +29,6 @@ class ComplaintsController < ApplicationController
     # this works when not being called as a job
     Complaint.escalate_to_executive_dean_by_index!
     
-    
-    
     authorize @complaints
     
   end

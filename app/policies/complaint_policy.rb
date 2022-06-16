@@ -46,7 +46,7 @@ class ComplaintPolicy < ApplicationPolicy
     end
    
     def update?
-      return true if user.has_role? :admin or user == complaint.user
+      return true if user.has_role? :admin or user == complaint.user or user == complaint.assignee
     end
    
     def destroy?

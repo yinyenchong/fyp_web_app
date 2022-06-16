@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   #get 'static_pages/complaints_charts'
   
+  
+  # "get" = what you see in the url, "to" = the controller action, "as" = path name
   get 'complaints_charts', to: 'static_pages#complaints_charts', as: 'weekly_complaints_charts'
   
   get 'complaints/new', to: 'complaints#new', as: 'newcomplaint'
@@ -54,8 +56,6 @@ Rails.application.routes.draw do
   
   #match '/users',   to: 'users#index',   via: 'get'
   #match '/users/:id',     to: 'users#show',       via: 'get'
-  
-  
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#home'

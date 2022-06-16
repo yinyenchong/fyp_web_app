@@ -7,43 +7,52 @@
     <title><%= yield(:title) %> | SCE Student Online Application</title>
   </head>
   
+  <div class="container">
+    <div class="left">
+      
+      <%= image_tag('images.jpg') %>
+      
+      <% if current_user.present? %>
+      
+        <h1>Welcome to SCE Student Online Application System, <%= current_user.name %></h1>
   
-  <div class="center jumbotron">
-    
-    <% if current_user.present? %>
-    
-      <h1>Welcome to SCE Student Online Application System, <%= current_user.name %></h1>
-      
-      <div>
-        <%= link_to 'All Users', users_path, :class => "btn" %> |
-        <%= link_to 'All Complaints', complaints_path, :class => "btn" %> |
-        <%= link_to 'Show Profile', show_profile_user_path(current_user.id), :class => "btn" %>
-      </div>
-      
-      
-      <% if !current_user.has_role? :student %>
+        <% if current_user.has_role? :admin %>
         
-        <%= link_to 'Chat Interface', rooms_path, :class => "btn" %> |
-        <%= link_to 'Complaint Statistics', weekly_complaints_charts_path, :class => "btn" %>
+          <%= link_to 'All Users', users_path, :class => "btn1" %> 
+          <%= link_to 'All Complaints', complaints_path, :class => "btn1" %> 
+          <%= link_to 'Show Profile', show_profile_user_path(current_user.id), :class => "btn1" %> 
+        
+          
+          <%= link_to 'Staff Chat', rooms_path, :class => "btn1" %> 
+          <%= link_to 'Complaint Statistics', weekly_complaints_charts_path, :class => "btn1" %>
+          
+        <% elsif current_user.has_role? :student %>  
+        
+          <%= link_to 'All Complaints', complaints_path, :class => "btn1" %> 
+          <%= link_to 'Show Profile', show_profile_user_path(current_user.id), :class => "btn1" %>
+        
+        <% else %>
+        
+          <%= link_to 'All Complaints', complaints_path, :class => "btn1" %> 
+          <%= link_to 'Show Profile', show_profile_user_path(current_user.id), :class => "btn1" %> 
+        
+          
+          <%= link_to 'Staff Chat', rooms_path, :class => "btn1" %> 
+          <%= link_to 'Complaint Statistics', weekly_complaints_charts_path, :class => "btn1" %>
+        
+        <% end %>
+        
+        
+      <% else %>
+      
+        <h1>Welcome to SCE Student Online Application System.</h1>
       
       <% end %>
       
+      <div class="line"></div>
       
-    <% else %>
-    
-      <h1>Welcome to SCE Student Online Application System.</h1>
-    
-    <% end %>
-    
-    <h2>
-      This is the placeholder UI for the home page
-      
-    </h2>
-    
-    
+    </div>
   </div>
-  
-
   
 </html>
 
