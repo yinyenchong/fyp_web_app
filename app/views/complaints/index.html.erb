@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 <% provide(:title, 'All Complaints') %>
 
 
@@ -30,7 +32,7 @@
         <% if current_user.has_role? :admin %>
         
           <td><%= link_to 'Edit', edit_complaint_path(complaint), :class => 'button-tables' %></td>
-          <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button-tables'  %></td>
+          <td><%= link_to 'Delete', complaint, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button-tables'  %></td>
           
         <% else %>
         

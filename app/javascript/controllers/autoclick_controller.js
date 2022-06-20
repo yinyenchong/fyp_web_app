@@ -17,9 +17,11 @@ export default class Autoclick extends Controller {
   }
 
   appear(entry) {
+    
     // callback automatically triggered when the element
     // intersects with the viewport (or root Element specified in the options)
     if (!Autoclick.throttling) {
+      
       Autoclick.throttling = true;
       Autoclick.messagesContainer =
         document.getElementById("messages-container");
@@ -31,7 +33,9 @@ export default class Autoclick extends Controller {
           behavior: "auto",
           block: "end",
         });
+        
         console.log("Scrolling");
+        
         Autoclick.throttling = false;
       }, 250);
     }
@@ -47,6 +51,7 @@ export default class Autoclick extends Controller {
    * @param {Function} func The function to throttle.
    * @param {Number} wait The time to wait before executing the function.
    */
+   
   static throttle(func, wait) {
     let timeout = null;
     let previous = 0;
@@ -65,7 +70,9 @@ export default class Autoclick extends Controller {
         if (timeout) {
           clearTimeout(timeout);
         }
+        
         later();
+        
       } else if (!timeout) {
         timeout = setTimeout(later, remaining);
       }

@@ -47,10 +47,10 @@ class UsersController < ApplicationController
     @message = Message.new
     
     
-    #@messages = @single_room.messages.order(created_at: :asc)
-    pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)
-    @pagy, messages = pagy(pagy_messages, items: 10)
-    @messages = messages.reverse
+    @messages = @single_room.messages.order(created_at: :asc)
+    #pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)
+    #@pagy, messages = pagy(pagy_messages, items: 10)
+    #@messages = messages.reverse
     
     authorize @user
     

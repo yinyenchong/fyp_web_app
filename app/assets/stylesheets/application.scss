@@ -29,7 +29,7 @@ body{
 }
 
 #single_room{
-    height: calc(100vh - 150px);
+    height: 70vh;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -41,6 +41,7 @@ body{
 }
 
 #room_container{
+  height: calc(65vh - 56px);
   display: flex;
   flex-direction: column;
   width: 30%;
@@ -64,6 +65,7 @@ body{
   color: #666;
   margin-bottom: 10px;
   font-size: 15px;
+  overflow-y: scroll;
 }
 
 #side_panel{
@@ -600,7 +602,7 @@ body{
 
 .show-content1 {
   width: auto;
-  height: auto;
+  height: 70vh;
   background: linear-gradient(to right, #fff, #dfeddc);
   border-radius: 50px;
 }
@@ -669,15 +671,15 @@ body{
   margin-top: 10px;
 }
 
-
-
 .reply{
   border-radius: 20px;
   width: 100%;
+  height: 20vh;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow-y: scroll;
 }
 
 .conlist .content-item{
@@ -741,10 +743,10 @@ body{
 
 .chat-area {
   position: relative;
-  top: -300px;
+  top: -400px;
   left: 400px;
   width: 60%;
-  height: 50vh;
+  height: 60vh;
   overflow-x: hidden;
   overflow-y: hidden;
   
