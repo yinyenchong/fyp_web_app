@@ -18,6 +18,8 @@
       
         <h1>Welcome to SCE Student Online Application System, <%= current_user.name %></h1>
   
+        <div class="home-button-text">
+        
         <% if current_user.has_role? :admin %>
         
           <%= link_to 'All Users', users_path, :class => "btn1" %> 
@@ -51,6 +53,7 @@
       
       <% end %>
       
+      </div>
       
     </div>
   </div>
