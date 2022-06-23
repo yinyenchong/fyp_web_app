@@ -16,7 +16,7 @@
     
     </div>
     
-    <div class="chat-area">
+    <div class="chat-area" >
      
         <% if @single_room %>
         
@@ -28,14 +28,14 @@
                 
                 <div id="messages" data-controller="scroll">
                     
-                   
-                    
                     <div id="messages-container">
                         <%= render @messages %>
                     </div>
                 
                 </div>
-                    <%= render 'messages/new_message_form' %>
+                
+                <%= render 'messages/new_message_form' %>
+                    
                 </div>
         <% end %>
 

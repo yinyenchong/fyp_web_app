@@ -29,7 +29,8 @@ body{
 }
 
 #single_room{
-    height: 70vh;
+    //height: 70vh;
+    height: 80%;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -42,6 +43,7 @@ body{
 
 #room_container{
   height: calc(65vh - 56px);
+  //height: 100%;
   display: flex;
   flex-direction: column;
   width: 30%;
@@ -123,7 +125,8 @@ body{
 
 .container1{
   overflow-y: auto;
-  height: 672px;
+  //height: 672px;
+  height: 60%;
 }
 
 .index-tables{
@@ -746,7 +749,7 @@ body{
   top: -400px;
   left: 400px;
   width: 60%;
-  height: 60vh;
+  height: 70vh;
   overflow-x: hidden;
   overflow-y: hidden;
   
