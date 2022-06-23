@@ -10,16 +10,6 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-    
-  around_filter :set_time_zone
-
-  def set_time_zone
-    if logged_in?
-      Time.use_zone(current_user.time_zone) { yield }
-    else
-      yield
-    end
-  end
       
   def configure_permitted_parameters
     added_attrs = [:name, :email, :password, :password_confirmation, :remember_me]
