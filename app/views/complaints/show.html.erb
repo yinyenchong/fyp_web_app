@@ -1,7 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<p id="notice"><%= notice %></p>
-
 <div class="show-content">
     <div class="show-title">
       <div class="show-detail">Submitter:</div>
@@ -23,36 +21,43 @@
       <div class="show-detail1"><%= @complaint.body %></div>
     </div>
 
-    <div class="show-title1">
-      <div class="show-detail2">Attached File:</div>
-      <div class="show-file"><%= image_tag(@complaint.complaintfile) if @complaint.complaintfile.attached? %></div>
-    </div>
+    <% if @complaint.complaintfile.attached? %>
+      <div class="show-title1">
+        <div class="show-detail2">Attached File:</div>
+        <div class="show-file"><%= image_tag(@complaint.complaintfile) if @complaint.complaintfile.attached? %></div>
+      </div>
+    <% end %>
 
     <div class="show-title">
       <div class="show-detail">Completed:</div>
       <div class="show-detail1"><%= @complaint.completed %></div>
     </div>
+  
+    <% if @complaint.completed? %>
+      <div class="show-title">
+        <div class="show-detail">Completed Time:</div>
+        <div class="show-detail1"><%= @complaint.completed_time %></div>
+      </div>
+    <% end %>
 
-    <div class="show-title">
-      <div class="show-detail">Completed Time:</div>
-      <div class="show-detail1"><%= @complaint.completed_time %></div>
-    </div>
+    <% if @complaint.escalated? %>
+    
+      <div class="show-title">
+        <div class="show-detail">Escalated:</div>
+        <div class="show-detail1"><%= @complaint.escalated %></div>
+      </div>
+  
+      <div class="show-title">
+        <div class="show-detail">Escalated Time:</div>
+        <div class="show-detail1"><%= @complaint.escalated_time %></div>
+      </div>
+  
+      <div class="show-title">
+        <div class="show-detail">Escalated To:</div>
+        <div class="show-detail1"><%= @complaint.escalated_to_user.name if @complaint.escalated_to_user.present? %></div>
+      </div>
 
-    <div class="show-title">
-      <div class="show-detail">Escalated:</div>
-      <div class="show-detail1"><%= @complaint.escalated %></div>
-    </div>
-
-    <div class="show-title">
-      <div class="show-detail">Escalated Time:</div>
-      <div class="show-detail1"><%= @complaint.escalated_time %></div>
-    </div>
-
-    <div class="show-title">
-      <div class="show-detail">Escalated To:</div>
-      <div class="show-detail1"><%= @complaint.escalated_to_user.name if @complaint.escalated_to_user.present? %></div>
-    </div>
-
+    <% end %>
 
 <div class="reply">
   
@@ -69,9 +74,14 @@
   
   <% end %>
   
+  <br>
+  
+  <%= link_to 'Back', complaints_path, :class => 'button-tables2' %>
+  
+  <br>
+  
 </div>
 
 
-<%= link_to 'Back', complaints_path, :class => 'button-tables' %>
 
-</div>
+</div

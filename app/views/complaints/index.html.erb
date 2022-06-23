@@ -21,14 +21,23 @@
       <% @complaints.each do |complaint| %>
       <tr>
         
-        <td><%= complaint.try(:title) %></td>
+        <% if complaint.completed == false && complaint.escalated == true %>
+          <td><div class="red"><%= complaint.try(:title) %></div></td>
+        <% elsif complaint.completed == true %>
+          <td><div class="green"><%= complaint.try(:title) %></div></td>
+        <% else %>
+          <td><div class="yellow"><%= complaint.try(:title) %></div></td>
+        <% end %>
+        
+        
+        
         <td><%= complaint.try(:created_at) %></td>
         <td><%= complaint.try(:updated_at) %></td>
         <td><%= complaint.assignee.try(:name) %></td>
         
         
         <td><%= link_to 'Show', complaint, :class => 'button-tables' %></td>
-        
+
         <% if current_user.has_role? :admin %>
         
           <td><%= link_to 'Edit', edit_complaint_path(complaint), :class => 'button-tables' %></td>
@@ -37,12 +46,17 @@
         <% end %>
         
       </tr>
+      
       <% end %>
+      
     </tbody>
+    
+   
   </table>
    
   <br>
    
   <%= link_to 'New Complaint', new_complaint_path, :class => 'button1-tables' %>
+    
   
 </div>

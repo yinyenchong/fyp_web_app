@@ -30,6 +30,7 @@ gem 'redis'
 gem 'turbo-rails'
 gem 'pagy'
 gem 'stimulus-rails'
+gem "font-awesome-rails"
 
 
 group :development, :test do

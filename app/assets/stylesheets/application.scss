@@ -17,7 +17,7 @@
  */
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
- 
+
 body{
     overflow: hidden;
 }
@@ -154,7 +154,7 @@ body{
 	padding: 10px;
 	background: #F4FFF5; 
 	border-bottom: 1px solid #fff;
-	color: #669;
+	//color: #669;
 	border-top: 1px solid transparent;
 }
 
@@ -184,6 +184,24 @@ body{
   border-radius: 15px;
   box-shadow: 0 9px #999;
   margin-top: 15px;
+}
+
+.button-tables2 {
+  display: inline-block;
+  padding: 8pt 8pt;
+  height: 5vh;
+  width: 5vw;
+  font-size: 10pt;
+  cursor: pointer;
+  text-align: center;   
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin-bottom: 15vh;
 }
 
 .button-tables:hover {
@@ -517,6 +535,22 @@ body{
   font-size: 20pt;
 }
 
+.red {
+  color: red;
+}
+
+.red-background {
+  background: red;
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color: #f2e00c;
+}
+
 .edit-content {
   width: auto;
   height: 65vh;
@@ -603,10 +637,11 @@ body{
 
 .show-content {
   width: auto;
-  height: auto;
+  height: 75vh;
   background: linear-gradient(to right, #fff, #dfeddc);
   border-radius: 50px;
   padding: 40px 100px;
+  overflow-y: auto;
 }
 
 .show-content1 {
@@ -688,7 +723,7 @@ body{
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow-y: scroll;
+  //overflow-y: auto;
 }
 
 .conlist .content-item{
