@@ -1,5 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<% provide(:title, "Log In") %>
+
 <template>
     <div class="dashboard-editor-container">
     </div>
@@ -8,25 +10,25 @@
     <div class="login-left">
 		<div style="font-size: 45px;">Log in</div>
       <div></div>
-      <div class="line"></div>
     </div>
 
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
     <div class="login-right">
       <div class="input">
-      <img style="margin-right: 10px;" class="email">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <img style="margin-right: 10px;" class="email">
+        <%= f.label :email %><br>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
       
       <div class="input">
-      <img style="margin-right: 10px;" class="password">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+        <img style="margin-right: 10px;" class="password">
+        <%= f.label :password %><br>
+        <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
       
-      <%= f.submit 'Log in', :class => "login" %>
+      <%= f.submit 'Log In', :class => "login" %>
     
 
   <% if devise_mapping.rememberable? %>
