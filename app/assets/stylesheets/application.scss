@@ -126,7 +126,7 @@ body{
 .container1{
   overflow-y: auto;
   //height: 672px;
-  height: 60%;
+  height: 70vh;
 }
 
 .index-tables{
@@ -457,6 +457,7 @@ body{
 
 .profile-container {
   background: #56c596;
+  height: 75vh;
 }
 
 .profile-inner {
@@ -484,6 +485,7 @@ body{
 
 .profile-content {
   display: flex;
+  height: 70vh;
 }
 
 .profile-details {
@@ -491,7 +493,8 @@ body{
   flex-direction: column;
   margin-top: 30px;
   justify-content: center;
-  margin-left: 26%;
+  //margin-left: 26%;
+  margin: 0 auto;
 }
 
 .profile-item {

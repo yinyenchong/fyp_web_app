@@ -4,7 +4,7 @@
 
 <div class="profile-container">
   <div class="profile-inner">
-    <div class="profile-title">PROFILE</div>
+    <div class="profile-title">Profile</div>
     
     <div class="profile-content">
       <aside class="profile-details">
@@ -14,16 +14,11 @@
             
             <div class="profile-item">
               <div class="profile-item-text">
-            <%= @user.name %>
-            </div>
+                <%= @user.name %>
+              </div>
             </div>
           
             <br>
-            <div class="profile-item">
-              <div class="profile-item-text">
-            <h1>User ID: <%= @user.id %>  </h1> 
-            </div>
-            </div>
             
             <div class="profile-item">
               <div class="profile-item-text">
@@ -41,10 +36,9 @@
             <div class="profile-item">
               <div class="profile-item-text">
             <h1>Role Name: <%= @user.roles.pluck(:name)  %></h1> 
-            </div>
-            </div>
-            
+
             </h1>
+            
             </br>
     </div>
     
