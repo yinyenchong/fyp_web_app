@@ -9,7 +9,7 @@
     <div class="profile-content">
       <aside class="profile-details">
           <h1>
-            <%= image_tag(@user.avatar, size: '250x250') if @user.avatar.attached? %>
+            <%= image_tag(@user.avatar, size: '200x200') if @user.avatar.attached? %>
             </br>
             
             <div class="profile-item">
@@ -22,25 +22,25 @@
             
             <div class="profile-item">
               <div class="profile-item-text">
-            <h1>ID: <%= @user.person_id %>  </h1> 
-            </div>
+                <h1>ID: <%= @user.person_id %>  </h1> 
+              </div>
             </div>
             
             <div class="profile-item">
               <div class="profile-item-text">
-            <h1>Birthday: <%= @user.birthday %>  </h1> 
-            </div>
+                <h1>Birthday: <%= @user.birthday %>  </h1> 
+              </div>
             </div>
             
             
             <div class="profile-item">
               <div class="profile-item-text">
-            <h1>Role Name: <%= @user.roles.pluck(:name)  %></h1> 
-
+                <h1>Role Name: <%= @user.roles.pluck(:name)  %></h1> 
+              </div>
             </h1>
             
             </br>
-    </div>
+            </div>
     
     <%= link_to 'Edit Profile', edit_user_path, :class => 'button1-tables' %>
       

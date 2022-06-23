@@ -499,13 +499,13 @@ body{
 
 .profile-item {
   display: flex;
-  height: 40px;
-  line-height: 40px;
-  font-size: 30px;
+  height: 30pt;
+  line-height: 40pt;
+  font-size: 20pt;
 }
 
 .profile-item-title {
-  padding-left: 20px;
+  padding-left: 20pt;
   width: 150px;
   color: #929292;
 }
@@ -514,11 +514,13 @@ body{
   flex: 1;
   font-weight: bold;
   color: #039c63;
+  font-size: 20pt;
 }
 
 .edit-content {
   width: auto;
-  height: auto;
+  height: 65vh;
+  overflow-y: auto;
   background: linear-gradient(to right, #fff, #dfeddc);
   border-radius: 50px;
   padding: 40px 100px;
@@ -543,7 +545,8 @@ body{
 .edit-select select {
   width: 100%;
   border: none;
-  color: #cdcdcd;
+  //color: #cdcdcd;
+  color: black;
 }
 
 .edit-select select:focus-visible {
