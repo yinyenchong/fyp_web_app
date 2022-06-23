@@ -11,28 +11,51 @@
 end
 
 # Create a main sample user.
-User.create!(name: "Example Admin ",
+User.create!(name: "Example Admin",
   email: "example@gmail.com",
   birthday: Date.new(1980, 6, 11),
   password: "venividivici",
   person_id: "0000000",
   password_confirmation: "venividivici")
   
-# Generate a bunch of additional users.
-5.times do |n|
-  name = Faker::Name.name
-  email = "example-#{n+1}@gmail.com"
-  password = "venividivici"
-  birthday = Date.new(1990, 9, 18)
-  person_id = "030000#{n+1}"
-  User.create!(name: name,
-              email: email,
-              password: password,
-              password_confirmation: password,
-              birthday: birthday,
-              person_id: person_id
-  )
-end
+  
+User.create!(name: "Example Student",
+  email: "example-1@gmail.com",
+  birthday: Date.new(2000, 1, 1),
+  password: "venividivici",
+  person_id: "3000000",
+  password_confirmation: "venividivici")
+  
+  
+  
+User.create!(name: "Example Lecturer",
+  email: "example-2@gmail.com",
+  birthday: Date.new(1990, 11, 1),
+  password: "venividivici",
+  person_id: "6000001",
+  password_confirmation: "venividivici")
+  
+User.create!(name: "Example Program Director",
+email: "example-3@gmail.com",
+birthday: Date.new(1972, 9, 8),
+password: "venividivici",
+person_id: "6000002",
+password_confirmation: "venividivici")
+
+User.create!(name: "Example Head of School",
+email: "example-4@gmail.com",
+birthday: Date.new(1970, 3, 7),
+password: "venividivici",
+person_id: "6000003",
+password_confirmation: "venividivici")
+
+User.create!(name: "Example Executive Dean",
+email: "example-5@gmail.com",
+birthday: Date.new(1960, 2, 10),
+password: "venividivici",
+person_id: "6000004",
+password_confirmation: "venividivici")
+
 
 User.first.add_role :admin
 User.second.add_role :student
