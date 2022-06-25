@@ -33,6 +33,7 @@ body{
     height: 80%;
     overflow-x: hidden;
     overflow-y: hidden;
+    margin-bottom: 10vh;
 }
 
 #messages{
@@ -49,6 +50,7 @@ body{
   width: 30%;
   padding-top: 20px;
   font-size: 30px;
+  
     
 }
 
@@ -787,7 +789,8 @@ body{
 
 .chat-area {
   position: relative;
-  top: -400px;
+  //top: -400px;
+  top: -50vh;
   left: 400px;
   width: 60%;
   height: 70vh;
@@ -822,7 +825,7 @@ body{
 }
 
 .chat-area-title {
-  font-size: 20px;
+  font-size: 20pt;
   font-weight: 600;
   font-family: "Arial", sans-serif;
   text-align: center;
