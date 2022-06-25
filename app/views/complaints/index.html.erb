@@ -56,7 +56,9 @@
    
   <br>
    
-  <%= link_to 'New Complaint', new_complaint_path, :class => 'button1-tables' %>
+  <% if user.has_role? :student %> 
+    <%= link_to 'New Complaint', new_complaint_path, :class => 'button1-tables' %>
+  <% end %>  
     
   
 </div>
