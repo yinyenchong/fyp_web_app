@@ -50,7 +50,6 @@ body{
   width: 30%;
   padding-top: 20px;
   font-size: 30px;
-  
     
 }
 
@@ -67,9 +66,8 @@ body{
 
 .nav-user{
   color: #666;
-  margin-bottom: 10px;
-  font-size: 15px;
-  overflow-y: scroll;
+  margin-bottom: 10pt;
+  font-size: 20pt;
 }
 
 #side_panel{
@@ -406,6 +404,10 @@ body{
 .check_box {
   width: 30px;
   height: 30px;
+}
+
+.users {
+  overflow-y: auto;
 }
 
 .upload {
