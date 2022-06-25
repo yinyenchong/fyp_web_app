@@ -293,6 +293,7 @@ body{
   color: #fff;
   font-size: 100px;
   font-weight: bold;
+  overflow-y: auto;
 }
 
 .images{
@@ -366,6 +367,11 @@ body{
   margin-top: 20px;
   text-decoration: none;
   color: #56c596;
+  flex: 1;
+}
+
+.forget2 {
+  flex: 1;
 }
 
 .link1{
@@ -409,6 +415,7 @@ body{
 .users {
   overflow-y: auto;
 }
+
 
 .upload {
   font-size: 14px;

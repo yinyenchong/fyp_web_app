@@ -17,13 +17,13 @@
 
     <div class="login-right">
       <div class="input">
-        <img style="margin-right: 10px;" class="email">
+        <img style="margin-right: 24pt;" class="email">
         <%= f.label :email %><br>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
       
       <div class="input">
-        <img style="margin-right: 10px;" class="password">
+        <img style="margin-right: 10pt;" class="password">
         <%= f.label :password %><br>
         <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
@@ -35,6 +35,7 @@
     <div class="forget">
       <%= f.label :remember_me %>
     </div>
+    
   <%= f.check_box :remember_me, :style => "margin-top: 0;" %>
   <% end %>
 
