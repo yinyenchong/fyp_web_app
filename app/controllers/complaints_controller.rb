@@ -22,6 +22,8 @@ class ComplaintsController < ApplicationController
         format.csv { send_data @complaints.to_csv, filename: "complaints-#{Date.today}.csv" }
       end
       
+    elsif current_user.has_role? :executive_dean
+      @complaints = Complaint.where("assignee_id = ? OR escalated_to_user_id = ?", current_user, current_user) 
     else  
       @complaints = Complaint.where(["assignee_id = ?", current_user])
     end
